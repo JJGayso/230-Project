@@ -17,10 +17,14 @@ public class Main {
 		myFrame.setTitle(" Bits Please ");
 		
 		ControlPanel controls = new ControlPanel();
-		ViewPanel map = new ViewPanel();
+		mapPanel map = new mapPanel();
+		infoPanel info = new infoPanel();
 		
-		myFrame.add(controls, BorderLayout.WEST);
-		myFrame.add(map, BorderLayout.CENTER);
+		
+		myFrame.add(controls, BorderLayout.NORTH);
+		myFrame.add(map, BorderLayout.EAST);
+		myFrame.add(info, BorderLayout.SOUTH);
+		
 		
 		
 		myFrame.pack();

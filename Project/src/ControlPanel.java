@@ -17,7 +17,8 @@ import net.miginfocom.swing.MigLayout;
 public class ControlPanel extends JPanel{
 
 	public ControlPanel(){
-		this.setPreferredSize(new Dimension(250, 600));
+		this.setPreferredSize(new Dimension(250, 300));
+		this.setMaximumSize(new Dimension(250, 300));
 		this.setLayout(new MigLayout());
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
