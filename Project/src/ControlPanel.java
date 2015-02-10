@@ -17,28 +17,28 @@ import net.miginfocom.swing.MigLayout;
 public class ControlPanel extends JPanel{
 
 	public ControlPanel(){
-		this.setPreferredSize(new Dimension(200, 600));
+		this.setPreferredSize(new Dimension(250, 600));
 		this.setLayout(new MigLayout());
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		JTextField searchBox = new JTextField("search", 10);
-		this.add(searchBox, "span 2");
+		this.add(searchBox, "cell 0 0, gapy 30::30");
 		
 		JButton searchButton = new JButton("GO");
-		this.add(searchButton, "cell 3 0");
+		this.add(searchButton, "cell 1 0, span");
 		
 		
 		JLabel startlabel = new JLabel("start: ");
-		this.add(startlabel, "cell 0 1");
+		this.add(startlabel, "cell 0 1, span");
 		
 		JTextField startBox = new JTextField(10);
-		this.add(startBox, "cell 1 1");
+		this.add(startBox, "cell 0 1");
 		
 		JLabel endLabel = new JLabel("end: ");
-		this.add(endLabel, "cell 0 2");
+		this.add(endLabel, "cell 0 2, span");
 		
 		JTextField endBox = new JTextField(10);
-		this.add(endBox, "cell 1 2");
+		this.add(endBox, "cell 0 2");
 		
 		JRadioButton byDistance = new JRadioButton("shortest distance");
 		byDistance.setSelected(true);
