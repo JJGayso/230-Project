@@ -47,8 +47,8 @@ public class ControlPanel extends JPanel{
 		group.add(byDistance);
 		group.add(byTime);
 		
-		this.add(byDistance, "span 2 wrap");
-		this.add(byTime, "cell 1 3");
+		this.add(byDistance, "cell 1 3 1 2");
+		this.add(byTime, "cell 0 3 1 2");
 	
 		
 		
