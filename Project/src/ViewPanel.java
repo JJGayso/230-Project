@@ -1,9 +1,11 @@
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -11,6 +13,7 @@ public class ViewPanel extends JPanel{
 	private BufferedImage usa;
 	
 	public ViewPanel() {
+		this.setPreferredSize(new Dimension(900, 600));
 		try {
 			usa = ImageIO.read(new File("Images/usa.png"));
 			
@@ -22,6 +25,6 @@ public class ViewPanel extends JPanel{
 	@Override
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(usa,200,200,null);
+		g.drawImage(usa,150,100,null);
 	}
 }
