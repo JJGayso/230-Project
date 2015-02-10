@@ -3,9 +3,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -37,6 +39,18 @@ public class ControlPanel extends JPanel{
 		
 		JTextField endBox = new JTextField(10);
 		this.add(endBox, "cell 1 2");
+		
+		JRadioButton byDistance = new JRadioButton("shortest distance");
+		byDistance.setSelected(true);
+		JRadioButton byTime = new JRadioButton("least time");
+		ButtonGroup group =  new ButtonGroup();
+		group.add(byDistance);
+		group.add(byTime);
+		
+		this.add(byDistance, "span 2 wrap");
+		this.add(byTime, "cell 1 3");
+	
+		
 		
 		
 	}
