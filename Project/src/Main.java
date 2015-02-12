@@ -21,14 +21,32 @@ public class Main {
 		mapPanel map = new mapPanel();
 		infoPanel info = new infoPanel();
 		
-		
 		//myFrame.add(controls, "wrap");
 		myFrame.add(map, "dock west");
 		myFrame.add(info);
 		
-		
-		
+		myFrame.pack();
 		myFrame.setVisible(true);
+		
+		ParkGraph graph = new ParkGraph();
+		
+		
+		AmusementPark HolidayWorld = new AmusementPark("Holiday World", 50, 50, 10);
+		AmusementPark DisneyWorld = new AmusementPark("Disney World", 90, 20, 9);
+		AmusementPark DisneyLand = new AmusementPark("Disneyland", 5, 40, 8);
+		AmusementPark CedarPoint = new AmusementPark("Cedar point", 70, 60, 4);
+		AmusementPark ConeyIsland = new AmusementPark("Coney Island", 100, 80, 2);
+		AmusementPark SixFlagsOverTexas = new AmusementPark("Six Flags over Texas", 35, 15, 7);
+		AmusementPark WorldsOfFun = new AmusementPark("Worlds of Fun", 40, 50, 1);
+		AmusementPark GlenwoodCavernsAdventurePark= new AmusementPark("Glenwood Caverns Adventure Park", 10, 70, 3);
+		AmusementPark Knoebels = new AmusementPark("Knoebels", 95, 80, 6);
+		AmusementPark KnottsBerryFarm = new AmusementPark("Knotts Berry Farm", 7, 30, 5);
+		
+		Links holDisConnection = new Links (HolidayWorld, DisneyLand);
+		HolidayWorld.addLink(holDisConnection);
+		DisneyLand.addLink(holDisConnection);
+		
+		graph.insert(HolidayWorld);
 	}
 
 }
