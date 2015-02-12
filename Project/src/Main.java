@@ -16,16 +16,16 @@ public class Main {
 		// TODO Add code here.  Create any other needed methods in this class, 
 		//      and any other classes that you need.
 		JFrame myFrame = new JFrame();
-		//myFrame.setLayout(new MigLayout());
+		myFrame.setLayout(new MigLayout());
 		myFrame.setTitle(" Bits Please ");
 		
 		ControlPanel controls = new ControlPanel();
 		mapPanel map = new mapPanel();
 		infoPanel info = new infoPanel();
 		
-		myFrame.add(controls, BorderLayout.CENTER);
-		myFrame.add(map, BorderLayout.EAST);
-		myFrame.add(info, BorderLayout.SOUTH);
+		myFrame.add(controls, "cell 0 0, growy, w 250");
+		myFrame.add(map , "dock east");
+		myFrame.add(info , "cell 0 1, growy, w 250");
 		
 		myFrame.pack();
 		myFrame.setVisible(true);

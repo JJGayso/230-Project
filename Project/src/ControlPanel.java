@@ -17,15 +17,14 @@ import net.miginfocom.swing.MigLayout;
 public class ControlPanel extends JPanel{
 
 	public ControlPanel(){
-		this.setPreferredSize(new Dimension(250, 300));
-		this.setMaximumSize(new Dimension(250, 300));
+		//this.setPreferredSize(new Dimension(250, 300));
 		this.setLayout(new MigLayout());
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		JTextField searchBox = new JTextField("search", 10);
 		this.add(searchBox, "cell 0 0, gapy 30::30");
 		
-		JButton searchButton = new JButton("GO");
+		JButton searchButton = new JButton("search");
 		this.add(searchButton, "cell 1 0, span");
 		
 		
@@ -51,6 +50,8 @@ public class ControlPanel extends JPanel{
 		this.add(byDistance, "cell 1 3 1 2");
 		this.add(byTime, "cell 0 3 1 2");
 	
+		JButton goButton = new JButton("GO!");
+		this.add(goButton, "cell 0 5");
 		
 		
 		

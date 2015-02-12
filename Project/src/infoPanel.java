@@ -12,7 +12,7 @@ import net.miginfocom.swing.MigLayout;
 public class infoPanel extends JPanel{
 
 	public infoPanel(){
-		this.setPreferredSize(new Dimension(250, 300));
+		//this.setPreferredSize(new Dimension(250, 300));
 		this.setLayout(new MigLayout());
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
