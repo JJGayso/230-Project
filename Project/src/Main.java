@@ -27,6 +27,8 @@ public class Main {
 		myFrame.pack();
 		myFrame.setVisible(true);
 		
+		ParkGraph graph = new ParkGraph();
+		
 		
 		AmusementPark HolidayWorld = new AmusementPark("Holiday World", 50, 50, 10);
 		AmusementPark DisneyWorld = new AmusementPark("Disney World", 90, 20, 9);
@@ -42,6 +44,8 @@ public class Main {
 		Links holDisConnection = new Links (HolidayWorld, DisneyLand);
 		HolidayWorld.addLink(holDisConnection);
 		DisneyLand.addLink(holDisConnection);
+		
+		graph.insert(HolidayWorld);
 	}
 
 }
