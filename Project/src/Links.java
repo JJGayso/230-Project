@@ -1,10 +1,10 @@
 import java.awt.geom.Point2D;
 
 public class Links {
-	Point2D p1;
-	Point2D p2;
-	int minutes;
-	int distance;
+	public Point2D p1;
+	public Point2D p2;
+	public int minutes;
+	public int distance;
 
 	public Links(AmusementPark first, AmusementPark second) {
 		p1 = first.getLocation();
@@ -18,6 +18,14 @@ public class Links {
 	}
 
 	public int calcTime() {
-		return (this.distance / 70) * 60;
+		return (int) (Math.round(this.distance / 70.0)) * 60;
+	}
+	
+	public int getDistance(){
+		return this.distance;
+	}
+	
+	public int getTime(){
+		return this.minutes;
 	}
 }

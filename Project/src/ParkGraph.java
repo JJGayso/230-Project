@@ -1,6 +1,5 @@
 import java.util.PriorityQueue;
 
-
 public class ParkGraph {
 	AmusementPark starting;
 	AmusementPark ending;
@@ -16,7 +15,7 @@ public class ParkGraph {
 		
 		this.distanceTraveled = 0;
 		this.timeTraveled = 0;
-		this.links.add(starting);
+//		this.links.add(starting);
 	}
 	
 	public Boolean insert(AmusementPark park) {
