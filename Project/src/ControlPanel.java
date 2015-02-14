@@ -1,6 +1,8 @@
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -15,10 +17,12 @@ import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
 public class ControlPanel extends JPanel{
+	infoPanel infopanel;
 
-	public ControlPanel(){
+	public ControlPanel(infoPanel info){
 		//this.setPreferredSize(new Dimension(250, 300));
 		this.setLayout(new MigLayout());
+		infopanel = info;
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		JTextField searchBox = new JTextField("search", 10);
@@ -26,6 +30,17 @@ public class ControlPanel extends JPanel{
 		
 		JButton searchButton = new JButton("search");
 		this.add(searchButton, "cell 1 0, span");
+		ActionListener search = new ActionListener(){
+			public void actionPerformed(ActionEvent f){
+				infopanel.removeAll();
+				System.out.println("searching");
+				JLabel searching = new JLabel("searching");
+				infopanel.add(searching, "cell 0 1");
+				infopanel.revalidate();
+				infopanel.repaint();
+			}
+		};
+		searchButton.addActionListener(search);
 		
 		
 		JLabel startlabel = new JLabel("start: ");
@@ -52,6 +67,17 @@ public class ControlPanel extends JPanel{
 	
 		JButton goButton = new JButton("GO!");
 		this.add(goButton, "cell 0 5");
+		ActionListener go = new ActionListener(){
+			public void actionPerformed(ActionEvent f){
+				infopanel.removeAll();
+				System.out.println("go");
+				JLabel goLabel = new JLabel("GO");
+				infopanel.add(goLabel, "cell 0 1");
+				infopanel.revalidate();
+				infopanel.repaint();
+			}
+		};
+		goButton.addActionListener(go);
 		
 		
 		

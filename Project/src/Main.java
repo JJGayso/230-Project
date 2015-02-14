@@ -19,9 +19,10 @@ public class Main {
 		myFrame.setLayout(new MigLayout());
 		myFrame.setTitle(" Bits Please ");
 		
-		ControlPanel controls = new ControlPanel();
+
 		mapPanel map = new mapPanel();
 		infoPanel info = new infoPanel();
+		ControlPanel controls = new ControlPanel(info);
 		
 		myFrame.add(controls, "cell 0 0, growy, w 250");
 		myFrame.add(map , "dock east");
