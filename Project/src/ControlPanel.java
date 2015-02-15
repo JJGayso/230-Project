@@ -17,9 +17,15 @@ import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
 public class ControlPanel extends JPanel{
-	infoPanel infopanel;
+	private infoPanel infopanel;
+	private JTextField startField;
+	private JTextField endField;
+	public AmusementPark start;
+	public AmusementPark end;
+	private boolean startChanging;
 
 	public ControlPanel(infoPanel info){
+		this.startChanging = true;
 		//this.setPreferredSize(new Dimension(250, 300));
 		this.setLayout(new MigLayout());
 		infopanel = info;
@@ -47,12 +53,14 @@ public class ControlPanel extends JPanel{
 		
 		JTextField startBox = new JTextField(10);
 		this.add(startBox, "cell 0 1");
+		this.startField = startBox;
 		
 		JLabel endLabel = new JLabel("end: ");
 		this.add(endLabel, "cell 0 2, span");
 		
 		JTextField endBox = new JTextField(10);
 		this.add(endBox, "cell 0 2");
+		this.endField = endBox;
 		
 		final JRadioButton byDistance = new JRadioButton("shortest distance");
 		byDistance.setSelected(true);
@@ -79,8 +87,18 @@ public class ControlPanel extends JPanel{
 			}
 		};
 		goButton.addActionListener(go);
-		
-		
-		
+	}
+	
+	public void setBox(AmusementPark park){
+		if(this.startChanging){
+			this.start = park;
+			this.startField.setText(park.name);
+			this.startChanging = !this.startChanging;
+		}
+		else{
+			this.end = park;
+			this.endField.setText(park.name);
+			this.startChanging = !this.startChanging;
+		}
 	}
 }

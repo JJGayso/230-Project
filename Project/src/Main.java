@@ -47,6 +47,7 @@ public class Main {
 		infoPanel info = new infoPanel();
 		mapPanel map = new mapPanel(parks, info);
 		ControlPanel controls = new ControlPanel(info);
+		map.setControl(controls);
 		
 		//use this to find the map coords of the amusement parks
 //		map.addMouseListener(new MouseAdapter() {

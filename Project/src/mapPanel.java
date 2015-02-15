@@ -19,10 +19,12 @@ import javax.swing.JPanel;
 public class mapPanel extends JPanel{
 	private BufferedImage usa;
 	private ArrayList<AmusementPark> parkList;
-	infoPanel infopanel;
+	private	infoPanel infopanel;
+	private ControlPanel controlpanel;
 	
 	
 	public mapPanel(ArrayList<AmusementPark> parks, infoPanel info) {
+		this.controlpanel = null;
 		this.infopanel = info;
 		this.parkList = parks;
 		this.setPreferredSize(new Dimension(900, 600));
@@ -45,10 +47,18 @@ public class mapPanel extends JPanel{
 	                        infopanel.add(parkLabel);
 	        				infopanel.revalidate();
 	        				infopanel.repaint();
+	        				
+	        				if (controlpanel != null){
+	        					controlpanel.setBox(park);
+	        				}
 	                    }
 	                }
 	            }
 	        });
+	}
+	
+	public void setControl(ControlPanel panel){
+		this.controlpanel = panel;
 	}
 	
 	public boolean isContained(Point2D click, Point2D park){
