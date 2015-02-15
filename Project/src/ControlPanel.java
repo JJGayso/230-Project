@@ -33,7 +33,6 @@ public class ControlPanel extends JPanel{
 		ActionListener search = new ActionListener(){
 			public void actionPerformed(ActionEvent f){
 				infopanel.removeAll();
-				System.out.println("searching");
 				JLabel searching = new JLabel("searching");
 				infopanel.add(searching, "cell 0 1");
 				infopanel.revalidate();
@@ -55,7 +54,7 @@ public class ControlPanel extends JPanel{
 		JTextField endBox = new JTextField(10);
 		this.add(endBox, "cell 0 2");
 		
-		JRadioButton byDistance = new JRadioButton("shortest distance");
+		final JRadioButton byDistance = new JRadioButton("shortest distance");
 		byDistance.setSelected(true);
 		JRadioButton byTime = new JRadioButton("least time");
 		ButtonGroup group =  new ButtonGroup();
@@ -70,8 +69,10 @@ public class ControlPanel extends JPanel{
 		ActionListener go = new ActionListener(){
 			public void actionPerformed(ActionEvent f){
 				infopanel.removeAll();
-				System.out.println("go");
-				JLabel goLabel = new JLabel("GO");
+				JLabel goLabel = new JLabel("GO by time");
+				if(byDistance.isSelected()) {
+					goLabel.setText("GO by distance");
+				}
 				infopanel.add(goLabel, "cell 0 1");
 				infopanel.revalidate();
 				infopanel.repaint();

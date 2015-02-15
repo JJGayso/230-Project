@@ -1,4 +1,6 @@
-import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
@@ -18,11 +20,41 @@ public class Main {
 		JFrame myFrame = new JFrame();
 		myFrame.setLayout(new MigLayout());
 		myFrame.setTitle(" Bits Please ");
+		ArrayList<AmusementPark> parks = new ArrayList<AmusementPark>();
 		
-
-		mapPanel map = new mapPanel();
+		AmusementPark HolidayWorld = new AmusementPark("Holiday World", 579, 285, 10);
+		parks.add(HolidayWorld);
+		AmusementPark DisneyWorld = new AmusementPark("Disney World", 680, 460, 9);
+		parks.add(DisneyWorld);
+		AmusementPark DisneyLand = new AmusementPark("Disneyland", 105, 328, 8);
+		parks.add(DisneyLand);
+		AmusementPark CedarPoint = new AmusementPark("Cedar point", 627, 218, 4);
+		parks.add(CedarPoint);
+		AmusementPark ConeyIsland = new AmusementPark("Coney Island", 756, 208, 2);
+		parks.add(ConeyIsland);
+		AmusementPark SixFlagsOverTexas = new AmusementPark("Six Flags over Texas", 416, 395, 7);
+		parks.add(SixFlagsOverTexas);
+		AmusementPark WorldsOfFun = new AmusementPark("Worlds of Fun", 466, 277, 1);
+		parks.add(WorldsOfFun);
+		AmusementPark GlenwoodCavernsAdventurePark= new AmusementPark("Glenwood Caverns Adventure Park", 281, 253, 3);
+		parks.add(GlenwoodCavernsAdventurePark);
+		AmusementPark Knoebels = new AmusementPark("Knoebels", 707, 216, 6);
+		parks.add(Knoebels);
+		AmusementPark KnottsBerryFarm = new AmusementPark("Knotts Berry Farm", 95, 315, 5);
+		parks.add(KnottsBerryFarm);
+		
+		
 		infoPanel info = new infoPanel();
+		mapPanel map = new mapPanel(parks, info);
 		ControlPanel controls = new ControlPanel(info);
+		
+		//use this to find the map coords of the amusement parks
+//		map.addMouseListener(new MouseAdapter() {
+//			@Override 
+//			public void mousePressed(MouseEvent e) {
+//				System.out.println(e.getX() + "," + e.getY());
+//			}
+//		});
 		
 		myFrame.add(controls, "cell 0 0, growy, w 250");
 		myFrame.add(map , "dock east");
@@ -34,16 +66,7 @@ public class Main {
 		ParkGraph graph = new ParkGraph();
 		
 		
-		AmusementPark HolidayWorld = new AmusementPark("Holiday World", 50, 50, 10);
-		AmusementPark DisneyWorld = new AmusementPark("Disney World", 90, 20, 9);
-		AmusementPark DisneyLand = new AmusementPark("Disneyland", 5, 40, 8);
-		AmusementPark CedarPoint = new AmusementPark("Cedar point", 70, 60, 4);
-		AmusementPark ConeyIsland = new AmusementPark("Coney Island", 100, 80, 2);
-		AmusementPark SixFlagsOverTexas = new AmusementPark("Six Flags over Texas", 35, 15, 7);
-		AmusementPark WorldsOfFun = new AmusementPark("Worlds of Fun", 40, 50, 1);
-		AmusementPark GlenwoodCavernsAdventurePark= new AmusementPark("Glenwood Caverns Adventure Park", 10, 70, 3);
-		AmusementPark Knoebels = new AmusementPark("Knoebels", 95, 80, 6);
-		AmusementPark KnottsBerryFarm = new AmusementPark("Knotts Berry Farm", 7, 30, 5);
+
 		
 		Links holDisConnection = new Links (HolidayWorld, DisneyLand);
 		HolidayWorld.addLink(holDisConnection);
