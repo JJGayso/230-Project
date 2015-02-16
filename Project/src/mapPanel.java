@@ -21,10 +21,11 @@ public class mapPanel extends JPanel{
 	private ArrayList<AmusementPark> parkList;
 	private	infoPanel infopanel;
 	private ControlPanel controlpanel;
-	
+	private AmusementPark clickedPark;
 	
 	public mapPanel(ArrayList<AmusementPark> parks, infoPanel info) {
 		this.controlpanel = null;
+		this.clickedPark = null;
 		this.infopanel = info;
 		this.parkList = parks;
 		this.setPreferredSize(new Dimension(900, 600));
@@ -34,15 +35,19 @@ public class mapPanel extends JPanel{
 		} catch (IOException ex){
 			
 		}
-		 addMouseListener(new MouseAdapter() {
-	            @Override
-	            public void mouseClicked(MouseEvent me) {
-	                super.mouseClicked(me);
+		MouseAdapter adapter = new MouseAdapter(){
+			  @Override
+	            public void mousePressed(MouseEvent me) {
+	                super.mousePressed(me);
 	                for (AmusementPark park : parkList) {
 	                	Point2D point = me.getPoint();
 	                    if (isContained(point, park.location)) {
 	                        //System.out.println("Clicked "+park.name);
 	                        JLabel parkLabel = new JLabel(park.name);
+	                        clickedPark = park;
+	                        clickedPark.color = Color.GREEN;
+	                        revalidate();
+	                        repaint();
 	                        infopanel.removeAll();
 	                        infopanel.add(parkLabel);
 	        				infopanel.revalidate();
@@ -54,7 +59,32 @@ public class mapPanel extends JPanel{
 	                    }
 	                }
 	            }
-	        });
+			  
+			  public void mouseReleased(MouseEvent me){
+				  super.mouseReleased(me);
+				  clickedPark.color = Color.BLUE;
+				  revalidate();
+				  repaint();
+			  }
+			  @Override  
+			  public void mouseMoved(MouseEvent me){
+	            	super.mouseMoved(me);
+	                for (AmusementPark park : parkList) {
+	                	if (isContained(me.getPoint(), park.location)) {
+	                        park.color = Color.BLUE;
+	                        revalidate();
+	                        repaint();
+	                	}
+	                	else{
+	                		park.color = Color.RED;
+	                		revalidate();
+	                		repaint();
+	                	}
+	                }
+	            }
+		};
+		this.addMouseListener(adapter);
+		this.addMouseMotionListener(adapter);
 	}
 	
 	public void setControl(ControlPanel panel){
@@ -82,7 +112,8 @@ public class mapPanel extends JPanel{
 		for(int i=0; i < parkList.size(); i++){
 			Point2D point = parkList.get(i).location;
 			Ellipse2D.Double circ = new Ellipse2D.Double(point.getX(), point.getY(), 15, 15);
-			graphics2.setColor(Color.RED);
+			graphics2.setColor(parkList.get(i).color);
+			g.drawString(parkList.get(i).name, (int)point.getX(), (int)point.getY());
 			graphics2.fill(circ);
 		}
 	}
