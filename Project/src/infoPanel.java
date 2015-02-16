@@ -17,7 +17,7 @@ public class infoPanel extends JPanel{
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		JLabel label = new JLabel(" This area will contain useful info");
-		this.add(label);
+		this.add(label, "cell 0 0");
 		
 		
 	}
