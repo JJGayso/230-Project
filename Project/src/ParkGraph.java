@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class ParkGraph {
@@ -5,9 +6,8 @@ public class ParkGraph {
 	AmusementPark ending;
 	int distanceTraveled;
 	int timeTraveled;
-	//Journey?
-	//Linked list of the locations you have visited?
-	PriorityQueue<AmusementPark> parks = new PriorityQueue<AmusementPark>();
+	PriorityQueue<Paths> paths = new PriorityQueue<Paths>();
+	public ArrayList<AmusementPark> parkConnections = new ArrayList<AmusementPark>();
 	
 	public ParkGraph() {
 		//Start location from gui
