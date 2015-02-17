@@ -16,7 +16,7 @@ public class AmusementPark {
 	public Color color;
 	public BufferedImage image;
 	
-	public AmusementPark(String name, int xCoordinate, int yCoordinate, int levelOfFun){
+	public AmusementPark(String name, double xCoordinate, double yCoordinate, int levelOfFun){
 		this.location = new Point2D.Double(xCoordinate, yCoordinate);
 		this.levelOfFun = levelOfFun;
 		this.name = name;
