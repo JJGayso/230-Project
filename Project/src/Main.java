@@ -65,7 +65,7 @@ public class Main {
 		myFrame.pack();
 		myFrame.setVisible(true);
 		//This is where the start and end come in from the gui
-		ParkGraph graph = new ParkGraph(HolidayWorld, Knoebels);
+		ParkGraph graph = new ParkGraph(DisneyWorld, CedarPoint);
 		
 		Links holDisW = new Links (HolidayWorld, DisneyWorld, 767);
 		Links holCed = new Links(HolidayWorld, CedarPoint, 395);
@@ -123,7 +123,7 @@ public class Main {
 		DisneyLand.addLink(disLSix);
 		
 		//Finding best route
-		while (graph.paths.peek().parkConnections.contains(CedarPoint)) {
+		while (!graph.paths.peek().parkConnections.contains(CedarPoint)) {
 			graph.travel();
 		}
 		Paths bestPath = graph.paths.poll();
