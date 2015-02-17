@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 
-public class Paths {
+public class Paths implements Comparable<Paths>{
 	public LinkedList<AmusementPark> parkConnections = new LinkedList<AmusementPark>();
 	public AmusementPark startLocation;
 	public AmusementPark endLocation;
@@ -24,7 +24,10 @@ public class Paths {
 		this.distanceCost = distanceCost;
 		this.parkConnections = route;
 	}
-	
-	
 
+	public int compareTo(Paths p) {
+		if(this.distanceCost > p.distanceCost) return 1;
+		if(this.distanceCost < p.distanceCost) return -1;
+		return 0;
+	}
 }

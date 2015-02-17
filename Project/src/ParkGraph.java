@@ -10,10 +10,11 @@ public class ParkGraph {
 	int timeTraveled;
 	PriorityQueue<Paths> paths = new PriorityQueue<Paths>();
 	ArrayList<Links> currentLocationLinks = new ArrayList<Links>(); //Neighbors of current
+	ArrayList<AmusementPark> parks = new ArrayList<AmusementPark>();
 	
-	public ParkGraph() {
-		//Start location from gui
-		//End location gui
+	public ParkGraph(AmusementPark start, AmusementPark stop) {
+		this.starting = start;
+		this.ending = stop;
 		this.distanceTraveled = 0;
 		this.distancecost = (int) starting.getLocation().distance(ending.getLocation()); //Need to add links and the distances
 		this.timeTraveled = 0;
@@ -45,8 +46,7 @@ public class ParkGraph {
 		return park;
 	}
 
-	public void insert(AmusementPark holidayWorld) {
-		// TODO Auto-generated method stub
-		
+	public void insert(AmusementPark park) {
+		parks.add(park);
 	}
 }
