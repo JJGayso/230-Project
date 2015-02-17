@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
 public class mapPanel extends JPanel{
@@ -43,15 +44,15 @@ public class mapPanel extends JPanel{
 	                	Point2D point = me.getPoint();
 	                    if (isContained(point, park.location)) {
 	                        //System.out.println("Clicked "+park.name);
-	                        JLabel parkLabel = new JLabel(park.name);
+	                        //JLabel parkLabel = new JLabel("<HTML><U><B>" + park.name + "</B></U></HTML>");
 	                        clickedPark = park;
 	                        clickedPark.color = Color.GREEN;
 	                        revalidate();
 	                        repaint();
-	                        infopanel.removeAll();
-	                        infopanel.add(parkLabel);
-	        				infopanel.revalidate();
-	        				infopanel.repaint();
+//	                        infopanel.removeAll();
+//	                        parkLabel.setFont(parkLabel.getFont().deriveFont(22f));
+//	                        infopanel.add(parkLabel, "pushx, align center");
+	                        infopanel.displayInfo(park);
 	        				
 	        				if (controlpanel != null){
 	        					controlpanel.setBox(park);
@@ -62,9 +63,11 @@ public class mapPanel extends JPanel{
 			  
 			  public void mouseReleased(MouseEvent me){
 				  super.mouseReleased(me);
-				  clickedPark.color = Color.BLUE;
-				  revalidate();
-				  repaint();
+				  if (clickedPark != null){
+					  clickedPark.color = Color.BLUE;
+					  revalidate();
+					  repaint();
+				  }
 			  }
 			  @Override  
 			  public void mouseMoved(MouseEvent me){

@@ -50,13 +50,13 @@ public class Main {
 		map.setControl(controls);
 		
 		//use this to find the map coords of the amusement parks
-//		map.addMouseListener(new MouseAdapter() {
+//		info.addMouseListener(new MouseAdapter() {
 //			@Override 
 //			public void mousePressed(MouseEvent e) {
 //				System.out.println(e.getX() + "," + e.getY());
 //			}
 //		});
-		
+//		
 		myFrame.add(controls, "cell 0 0, growy, w 250");
 		myFrame.add(map , "dock east");
 		myFrame.add(info , "cell 0 1, growy, w 250");
@@ -73,7 +73,7 @@ public class Main {
 		HolidayWorld.addLink(holDisConnection);
 		DisneyLand.addLink(holDisConnection);
 		
-		graph.insert(HolidayWorld);
+		//graph.insert(HolidayWorld);
 	}
 
 }
