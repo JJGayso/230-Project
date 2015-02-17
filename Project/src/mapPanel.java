@@ -1,3 +1,4 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -52,7 +53,6 @@ public class mapPanel extends JPanel{
 	                        //System.out.println("Clicked "+park.name);
 	                        //JLabel parkLabel = new JLabel("<HTML><U><B>" + park.name + "</B></U></HTML>");
 	                        clickedPark = park;
-	                        clickedPark.color = Color.GREEN;
 	                        revalidate();
 	                        repaint();
 //	                        infopanel.removeAll();
@@ -67,15 +67,6 @@ public class mapPanel extends JPanel{
 	                }
 	            }
 			  
-			  public void mouseReleased(MouseEvent me){
-				  super.mouseReleased(me);
-				  if (clickedPark != null){
-					  clickedPark.color = Color.BLUE;
-					  revalidate();
-					  repaint();
-				  }
-			  }
-			  @Override  
 			  public void mouseMoved(MouseEvent me){
 	            	super.mouseMoved(me);
 	                for (AmusementPark park : parkList) {
@@ -111,7 +102,7 @@ public class mapPanel extends JPanel{
 	}
 	
 	public void addLine(AmusementPark startPark, AmusementPark endPark){
-		Line2D.Double line = new Line2D.Double(startPark.location, endPark.location);
+		Line2D.Double line = new Line2D.Double(startPark.location.getX() + 7.5, startPark.location.getY() + 7.5, endPark.location.getX() + 7.5, endPark.location.getY() + 7.5);
 		this.lines.add(line);
 	}
 	
@@ -123,17 +114,21 @@ public class mapPanel extends JPanel{
 		double scale = 1.3;
 		g.drawImage(usa,50,50,(int)(usa.getWidth() * scale), (int)(usa.getHeight() * scale), this);
 		
-		if (this.drawLines){
-			for(int i=0; i<this.lines.size(); i++){
-				graphics2.draw(this.lines.get(i));
-			}
-		}
+	
 		for(int i=0; i < parkList.size(); i++){
 			Point2D point = parkList.get(i).location;
 			Ellipse2D.Double circ = new Ellipse2D.Double(point.getX(), point.getY(), 15, 15);
 			graphics2.setColor(parkList.get(i).color);
 			g.drawString(parkList.get(i).name, (int)point.getX(), (int)point.getY());
 			graphics2.fill(circ);
+		}
+		graphics2.setStroke(new BasicStroke(5));
+		graphics2.setColor(Color.BLACK);
+		if (this.drawLines){
+			for(int i=0; i<this.lines.size(); i++){
+				
+				graphics2.draw(this.lines.get(i));
+			}
 		}
 	}
 }

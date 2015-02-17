@@ -19,7 +19,7 @@ public class Main {
 		//      and any other classes that you need.
 		JFrame myFrame = new JFrame();
 		myFrame.setLayout(new MigLayout());
-		myFrame.setTitle(" Bits Please ");
+		myFrame.setTitle(" Bits Please Navigation System ");
 		ArrayList<AmusementPark> parks = new ArrayList<AmusementPark>();
 		
 		AmusementPark HolidayWorld = new AmusementPark("Holiday World", 579, 285, 10);
@@ -65,7 +65,7 @@ public class Main {
 		myFrame.pack();
 		myFrame.setVisible(true);
 		//This is where the start and end come in from the gui
-		ParkGraph graph = new ParkGraph(DisneyWorld, CedarPoint);
+		ParkGraph graph = new ParkGraph(HolidayWorld, Knoebels);
 		
 		Links holDisW = new Links (HolidayWorld, DisneyWorld, 767);
 		Links holCed = new Links(HolidayWorld, CedarPoint, 395);
@@ -123,7 +123,7 @@ public class Main {
 		DisneyLand.addLink(disLSix);
 		
 		//Finding best route
-		while (!graph.paths.peek().parkConnections.contains(CedarPoint)) {
+		while (graph.paths.peek().parkConnections.contains(CedarPoint)) {
 			graph.travel();
 		}
 		Paths bestPath = graph.paths.poll();
