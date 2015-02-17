@@ -1,23 +1,30 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 
 public class Paths {
-	public ArrayList<Links> parkConnections = new ArrayList<Links>();
-	int total = 0;
+	public LinkedList<AmusementPark> parkConnections = new LinkedList<AmusementPark>();
+	public AmusementPark startLocation;
+	public AmusementPark endLocation;
+	public int distanceTraveled;
+	public int distanceCost;
 	
-	Paths(){
+	public Paths(AmusementPark startLocation, AmusementPark endLocation, int distanceTraveled, int distanceCost) {
+		this.startLocation = startLocation;
+		this.endLocation = endLocation;
+		this.parkConnections.add(startLocation);
+		this.distanceTraveled = distanceTraveled;
+		this.distanceCost = distanceCost;
 	}
 	
-	public void addPath(Links l){
-		this.parkConnections.add(l);
-		this.total += l.distance;
+	public Paths(AmusementPark startLocation, AmusementPark endLocation, int distanceTraveled, int distanceCost, LinkedList<AmusementPark> route) {
+		this.startLocation = startLocation;
+		this.endLocation = endLocation;
+		this.distanceTraveled = distanceTraveled;
+		this.distanceCost = distanceCost;
+		this.parkConnections = route;
 	}
 	
-	public ArrayList<Links> getPaths(){
-		return this.parkConnections;
-	}
 	
-	public int getTotal(){
-		return this.total;
-	}
+
 }
