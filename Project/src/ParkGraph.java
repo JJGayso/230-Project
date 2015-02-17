@@ -5,8 +5,8 @@ import java.util.PriorityQueue;
 public class ParkGraph {
 	AmusementPark starting;
 	AmusementPark ending;
-	int distanceTraveled;
-	int distancecost; //a.k.a. straight line distance from the point to final destination
+	double distanceTraveled;
+	double distancecost; //a.k.a. straight line distance from the point to final destination
 	int timeTraveled;
 	PriorityQueue<Paths> paths = new PriorityQueue<Paths>();
 	ArrayList<Links> currentLocationLinks = new ArrayList<Links>(); //Neighbors of current
@@ -16,7 +16,7 @@ public class ParkGraph {
 		this.starting = start;
 		this.ending = stop;
 		this.distanceTraveled = 0;
-		this.distancecost = (int) starting.getLocation().distance(ending.getLocation()); //Need to add links and the distances
+		this.distancecost = (double) starting.getLocation().distance(ending.getLocation()); //Need to add links and the distances
 		this.timeTraveled = 0;
 		this.paths.add(new Paths(starting, ending, distanceTraveled, distancecost));
 	}
@@ -34,7 +34,7 @@ public class ParkGraph {
 			if (!bestPath.parkConnections.contains(placeToGo)) {
 				LinkedList<AmusementPark> temp = (LinkedList<AmusementPark>) bestPath.parkConnections.clone();
 				temp.add(placeToGo);
-				Paths newPath = new Paths(starting, ending, currentLocationLinks.get(i).getDistance() + distanceTraveled, (int) placeToGo.getLocation().distance(ending.getLocation()), temp);
+				Paths newPath = new Paths(starting, ending, currentLocationLinks.get(i).getDistance() + distanceTraveled, (double) placeToGo.getLocation().distance(ending.getLocation()) + currentLocationLinks.get(i).getDistance(), temp);
 				paths.add(newPath); //Before calling travel check to see if final location is in the linked list or just check the distance cost which should be zero
 			}
 		}

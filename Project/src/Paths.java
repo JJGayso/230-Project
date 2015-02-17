@@ -6,10 +6,10 @@ public class Paths implements Comparable<Paths>{
 	public LinkedList<AmusementPark> parkConnections = new LinkedList<AmusementPark>();
 	public AmusementPark startLocation;
 	public AmusementPark endLocation;
-	public int distanceTraveled;
-	public int distanceCost;
+	public double distanceTraveled;
+	public double distanceCost;
 	
-	public Paths(AmusementPark startLocation, AmusementPark endLocation, int distanceTraveled, int distanceCost) {
+	public Paths(AmusementPark startLocation, AmusementPark endLocation, double distanceTraveled, double distanceCost) {
 		this.startLocation = startLocation;
 		this.endLocation = endLocation;
 		this.parkConnections.add(startLocation);
@@ -17,7 +17,7 @@ public class Paths implements Comparable<Paths>{
 		this.distanceCost = distanceCost;
 	}
 	
-	public Paths(AmusementPark startLocation, AmusementPark endLocation, int distanceTraveled, int distanceCost, LinkedList<AmusementPark> route) {
+	public Paths(AmusementPark startLocation, AmusementPark endLocation, double distanceTraveled, double distanceCost, LinkedList<AmusementPark> route) {
 		this.startLocation = startLocation;
 		this.endLocation = endLocation;
 		this.distanceTraveled = distanceTraveled;
