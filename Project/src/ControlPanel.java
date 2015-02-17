@@ -79,7 +79,7 @@ public class ControlPanel extends JPanel{
 		ActionListener go = new ActionListener(){
 			public void actionPerformed(ActionEvent f){
 				ParkGraph graph = new ParkGraph(start, end);
-				while (graph.paths.peek().distanceCost != 0){
+				while (graph.paths.peek().parkConnections.contains(end)){
 					graph.travel();
 				}
 				Paths bestPath = graph.paths.poll();

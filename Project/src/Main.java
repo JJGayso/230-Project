@@ -122,7 +122,8 @@ public class Main {
 		DisneyLand.addLink(disLKnot);
 		DisneyLand.addLink(disLSix);
 		
-		while (graph.paths.peek().distanceCost != 0) {
+		//Finding best route
+		while (graph.paths.peek().parkConnections.contains(CedarPoint)) {
 			graph.travel();
 		}
 		Paths bestPath = graph.paths.poll();
