@@ -34,7 +34,6 @@ public class ParkGraph {
 				temp.add(placeToGo);
 				Paths newPath = new Paths(starting, ending, currentLocationLinks.get(i).getDistance() + distanceTraveled, (int) placeToGo.getLocation().distance(ending.getLocation()), temp);
 				paths.add(newPath); //Before calling travel check to see if final location is in the linked list or just check the distance cost which should be zero
-				return this.paths;
 			}
 		}
 		return this.paths; //Returns the first path in the priority queue
