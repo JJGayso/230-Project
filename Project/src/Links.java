@@ -4,7 +4,7 @@ public class Links {
 	public Point2D p1;
 	public Point2D p2;
 	public int minutes;
-	public int distance;
+	public double distance;
 	public AmusementPark travelToLocation;
 
 	public Links(AmusementPark first, AmusementPark second) {
@@ -15,15 +15,15 @@ public class Links {
 		this.travelToLocation = second;
 	}
 
-	public int calcDistance() {
-		return (int) p1.distance(p2);
+	public double calcDistance() {
+		return (double) p1.distance(p2);
 	}
 
 	public int calcTime() {
 		return (int) (Math.round(this.distance / 70.0)) * 60;
 	}
 	
-	public int getDistance(){
+	public double getDistance(){
 		return this.distance;
 	}
 	
