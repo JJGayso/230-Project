@@ -52,14 +52,14 @@ public class ControlPanel extends JPanel{
 		JLabel startlabel = new JLabel("start: ");
 		this.add(startlabel, "cell 0 1, span");
 		
-		final JTextField startBox = new JTextField(18);
+		JTextField startBox = new JTextField(18);
 		this.add(startBox, "cell 0 1");
 		this.startField = startBox;
 		
 		JLabel endLabel = new JLabel("end: ");
 		this.add(endLabel, "cell 0 2, span");
 		
-		final JTextField endBox = new JTextField(18);
+		JTextField endBox = new JTextField(18);
 		this.add(endBox, "cell 0 2");
 		this.endField = endBox;
 		

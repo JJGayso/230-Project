@@ -9,7 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import java.io.InputStream;
+import org.omg.CORBA.portable.InputStream;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -37,11 +37,10 @@ public class infoPanel extends JPanel{
         parkLabel.setFont(parkLabel.getFont().deriveFont(22f));
         this.add(parkLabel, "pushx, align center");
 		this.displayingParkInfo = true;
-		InputStream inputFile = this.getClass().getResourceAsStream("" + "ParkInfo/" + park.name);
+		java.io.InputStream inputFile = this.getClass().getResourceAsStream("ParkInfo/" + park.name + "");
 		Scanner inputScanner = null;
 		inputScanner = new Scanner(inputFile);
 		int row = 2; 
-		this.add(new JLabel(""), "cell 0 1, height 150");
 		while(inputScanner.hasNextLine()){
 			
 			String line = inputScanner.nextLine();

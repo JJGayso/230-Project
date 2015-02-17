@@ -64,7 +64,7 @@ public class Main {
 		myFrame.pack();
 		myFrame.setVisible(true);
 		
-		//ParkGraph graph = new ParkGraph();
+		ParkGraph graph = new ParkGraph();
 		
 		
 
