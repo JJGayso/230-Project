@@ -27,6 +27,7 @@ public class ParkGraph {
 		distanceTraveled = bestPath.distanceTraveled;
 		AmusementPark currentLocation = bestPath.parkConnections.getLast();
 		currentLocationLinks = currentLocation.getLinks(); //This needs to return an array list of Amusement Parks that the current location is connected to 
+		if (currentLocationLinks.size() == 0) return this.paths;
 		for (int i = 0; i < currentLocationLinks.size(); i++) {
 			AmusementPark placeToGo = currentLocationLinks.get(i).getLinkLocation();
 			if (!bestPath.parkConnections.contains(placeToGo)) {
