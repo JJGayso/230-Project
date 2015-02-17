@@ -23,6 +23,7 @@ public class ControlPanel extends JPanel{
 	public AmusementPark start;
 	public AmusementPark end;
 	private boolean startChanging;
+	public mapPanel map;
 
 	public ControlPanel(infoPanel info){
 		this.startChanging = true;
@@ -77,6 +78,26 @@ public class ControlPanel extends JPanel{
 		this.add(goButton, "cell 0 5");
 		ActionListener go = new ActionListener(){
 			public void actionPerformed(ActionEvent f){
+				ParkGraph graph = new ParkGraph(start, end);
+				while (graph.paths.peek().distanceCost != 0){
+					graph.travel();
+				}
+				Paths bestPath = graph.paths.poll();
+				if (map != null){
+					map.drawLines = true;
+					map.lines.clear();
+				}
+				
+				for (int i =1; i < bestPath.parkConnections.size(); i++){
+					if (map != null){
+						System.out.println(bestPath.parkConnections.get(i-1).name + " " + bestPath.parkConnections.get(i).name);
+						map.addLine(bestPath.parkConnections.get(i-1), bestPath.parkConnections.get(i));
+					}
+				}
+				if (map != null){
+					map.revalidate();
+					map.repaint();
+				}
 				infopanel.removeAll();
 				JLabel goLabel = new JLabel("GO by time");
 				if(byDistance.isSelected()) {
@@ -89,6 +110,10 @@ public class ControlPanel extends JPanel{
 			}
 		};
 		goButton.addActionListener(go);
+	}
+	
+	public void setMap(mapPanel inmap){
+		this.map = inmap;
 	}
 	
 	public void setBox(AmusementPark park){
