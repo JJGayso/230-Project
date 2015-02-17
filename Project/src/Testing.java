@@ -101,8 +101,14 @@ public class Testing {
 		DisneyLand.addLink(disLKnot);
 		DisneyLand.addLink(disLSix);
 		
-		ParkGraph graph = new ParkGraph(HolidayWorld, DisneyLand);
-		graph.travel();
+		ParkGraph graph = new ParkGraph(HolidayWorld, DisneyWorld);
+		while (graph.paths.peek().distanceCost != 0) {
+			graph.travel();
+		}
+		Paths bestPath = graph.paths.poll();
+		for (int i = 0; i < bestPath.parkConnections.size(); i++) {
+			System.out.println(bestPath.parkConnections.get(i).name);
+		}
 		//Check if priority queue is updated with proper stuff
 		graph.insert(HolidayWorld);
 		graph.insert(KnottsBerryFarm);

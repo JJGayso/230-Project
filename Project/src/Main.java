@@ -63,8 +63,8 @@ public class Main {
 		
 		myFrame.pack();
 		myFrame.setVisible(true);
-		
-		ParkGraph graph = new ParkGraph();
+		//This is where the start and end come in from the gui
+		ParkGraph graph = new ParkGraph(HolidayWorld, Knoebels);
 		
 		Links holDisW = new Links (HolidayWorld, DisneyWorld);
 		Links holCed = new Links(HolidayWorld, CedarPoint);
@@ -120,6 +120,14 @@ public class Main {
 		KnottsBerryFarm.addLink(knotDisL);
 		DisneyLand.addLink(disLKnot);
 		DisneyLand.addLink(disLSix);
+		
+		while (graph.paths.peek().distanceCost != 0) {
+			graph.travel();
+		}
+		Paths bestPath = graph.paths.poll();
+		for (int i = 0; i < bestPath.parkConnections.size(); i++) {
+			System.out.println(bestPath.parkConnections.get(i).name);
+		}
 		
 		graph.insert(HolidayWorld);
 		graph.insert(KnottsBerryFarm);
