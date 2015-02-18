@@ -102,12 +102,12 @@ public class Testing {
 //		DisneyLand.addLink(disLSix);
 		
 		ParkGraph graph = new ParkGraph(HolidayWorld, DisneyWorld);
-		while (graph.paths.peek().distanceCost != 0) {
-			graph.travel();
+		while (graph.pathsByDistance.peek().distanceCost != 0) {
+			graph.travelByDistance();
 		}
-		Paths bestPath = graph.paths.poll();
-		for (int i = 0; i < bestPath.parkConnections.size(); i++) {
-			System.out.println(bestPath.parkConnections.get(i).name);
+		Paths bestPath = graph.pathsByDistance.poll();
+		for (int i = 0; i < bestPath.routeByDistance.size(); i++) {
+			System.out.println(bestPath.routeByDistance.get(i).name);
 		}
 		//Check if priority queue is updated with proper stuff
 		graph.insert(HolidayWorld);

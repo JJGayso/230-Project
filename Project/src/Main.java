@@ -65,7 +65,7 @@ public class Main {
 		myFrame.pack();
 		myFrame.setVisible(true);
 		//This is where the start and end come in from the gui
-		ParkGraph graph = new ParkGraph(HolidayWorld, Knoebels);
+		ParkGraph graph = new ParkGraph(GlenwoodCavernsAdventurePark, DisneyWorld);
 		
 		Links holDisW = new Links (HolidayWorld, DisneyWorld, 767);
 		Links holCed = new Links(HolidayWorld, CedarPoint, 395);
@@ -123,13 +123,22 @@ public class Main {
 		DisneyLand.addLink(disLSix);
 		
 		//Finding best route
-		while (graph.paths.peek().parkConnections.contains(CedarPoint)) {
-			graph.travel();
+//		while (!graph.pathsByDistance.peek().routeByDistance.contains(DisneyWorld)) {
+//			graph.travelByDistance();
+//		}
+//		Paths bestPath = graph.pathsByDistance.poll();
+//		for (int i = 0; i < bestPath.routeByDistance.size(); i++) {
+//			System.out.println(bestPath.routeByDistance.get(i).name);
+//		}
+		
+		while (!graph.pathsByTime.peek().routeByTime.contains(DisneyWorld)) {
+			graph.travelByTime();
 		}
-		Paths bestPath = graph.paths.poll();
-		for (int i = 0; i < bestPath.parkConnections.size(); i++) {
-			System.out.println(bestPath.parkConnections.get(i).name);
+		Paths bestPath = graph.pathsByTime.poll();
+		for (int i = 0; i < bestPath.routeByTime.size(); i++) {
+			System.out.println(bestPath.routeByTime.get(i).name);
 		}
+		System.out.println(bestPath.timeSpentTraveling);
 		
 		graph.insert(HolidayWorld);
 		graph.insert(KnottsBerryFarm);

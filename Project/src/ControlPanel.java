@@ -79,19 +79,19 @@ public class ControlPanel extends JPanel{
 		ActionListener go = new ActionListener(){
 			public void actionPerformed(ActionEvent f){
 				ParkGraph graph = new ParkGraph(start, end);
-				while (!graph.paths.peek().parkConnections.contains(end)){
-					graph.travel();
+				while (!graph.pathsByDistance.peek().routeByDistance.contains(end)){
+					graph.travelByDistance();
 				}
-				Paths bestPath = graph.paths.poll();
+				Paths bestPath = graph.pathsByDistance.poll();
 				if (map != null){
 					map.drawLines = true;
 					map.lines.clear();
 				}
 				
-				for (int i =1; i < bestPath.parkConnections.size(); i++){
+				for (int i =1; i < bestPath.routeByDistance.size(); i++){
 					if (map != null){
-						System.out.println(bestPath.parkConnections.get(i-1).name + " " + bestPath.parkConnections.get(i).name);
-						map.addLine(bestPath.parkConnections.get(i-1), bestPath.parkConnections.get(i));
+						System.out.println(bestPath.routeByDistance.get(i-1).name + " " + bestPath.routeByDistance.get(i).name);
+						map.addLine(bestPath.routeByDistance.get(i-1), bestPath.routeByDistance.get(i));
 					}
 				}
 				if (map != null){
