@@ -66,7 +66,7 @@ public class ControlPanel extends JPanel{
 		
 		final JRadioButton byDistance = new JRadioButton("shortest distance");
 		byDistance.setSelected(true);
-		JRadioButton byTime = new JRadioButton("least time");
+		final JRadioButton byTime = new JRadioButton("least time");
 		ButtonGroup group =  new ButtonGroup();
 		group.add(byDistance);
 		group.add(byTime);
@@ -79,19 +79,38 @@ public class ControlPanel extends JPanel{
 		ActionListener go = new ActionListener(){
 			public void actionPerformed(ActionEvent f){
 				ParkGraph graph = new ParkGraph(start, end);
-				while (!graph.pathsByDistance.peek().routeByDistance.contains(end)){
-					graph.travelByDistance();
-				}
-				Paths bestPath = graph.pathsByDistance.poll();
-				if (map != null){
-					map.drawLines = true;
-					map.lines.clear();
-				}
-				
-				for (int i =1; i < bestPath.routeByDistance.size(); i++){
+				if (byDistance.isSelected()) {
+					while (!graph.pathsByDistance.peek().routeByDistance.contains(end)){
+						graph.travelByDistance();
+					}
+					Paths bestPath = graph.pathsByDistance.poll();
 					if (map != null){
-						System.out.println(bestPath.routeByDistance.get(i-1).name + " " + bestPath.routeByDistance.get(i).name);
-						map.addLine(bestPath.routeByDistance.get(i-1), bestPath.routeByDistance.get(i));
+						map.drawLines = true;
+						map.lines.clear();
+					}
+					
+					for (int i =1; i < bestPath.routeByDistance.size(); i++){
+						if (map != null){
+							System.out.println(bestPath.routeByDistance.get(i-1).name + " " + bestPath.routeByDistance.get(i).name);
+							map.addLine(bestPath.routeByDistance.get(i-1), bestPath.routeByDistance.get(i));
+						}
+					}
+				}
+				if (byTime.isSelected()) {
+					while (!graph.pathsByTime.peek().routeByTime.contains(end)){
+						graph.travelByTime();
+					}
+					Paths bestPath = graph.pathsByTime.poll();
+					if (map != null){
+						map.drawLines = true;
+						map.lines.clear();
+					}
+					
+					for (int i =1; i < bestPath.routeByTime.size(); i++){
+						if (map != null){
+							System.out.println(bestPath.routeByTime.get(i-1).name + " " + bestPath.routeByTime.get(i).name);
+							map.addLine(bestPath.routeByTime.get(i-1), bestPath.routeByTime.get(i));
+						}
 					}
 				}
 				if (map != null){
@@ -107,6 +126,7 @@ public class ControlPanel extends JPanel{
 				infopanel.displayingParkInfo = false;
 				infopanel.revalidate();
 				infopanel.repaint();
+				
 			}
 		};
 		goButton.addActionListener(go);
