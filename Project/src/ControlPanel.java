@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,11 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.Scrollable;
 
 import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
-public class ControlPanel extends JPanel{
+public class ControlPanel extends JPanel implements Scrollable{
 	private infoPanel infopanel;
 	private JTextField startField;
 	private JTextField endField;
@@ -95,6 +97,7 @@ public class ControlPanel extends JPanel{
 							map.addLine(bestPath.routeByDistance.get(i-1), bestPath.routeByDistance.get(i));
 						}
 					}
+					infopanel.displayRoute(bestPath.routeByDistance);
 				}
 				if (byTime.isSelected()) {
 					while (!graph.pathsByTime.peek().routeByTime.contains(end)){
@@ -117,12 +120,12 @@ public class ControlPanel extends JPanel{
 					map.revalidate();
 					map.repaint();
 				}
-				infopanel.removeAll();
-				JLabel goLabel = new JLabel("GO by time");
-				if(byDistance.isSelected()) {
-					goLabel.setText("GO by distance");
-				}
-				infopanel.add(goLabel, "cell 0 1");
+//				infopanel.removeAll();
+//				JLabel goLabel = new JLabel("GO by time");
+//				if(byDistance.isSelected()) {
+//					goLabel.setText("GO by distance");
+//				}
+//				infopanel.add(goLabel, "cell 0 1");
 				infopanel.displayingParkInfo = false;
 				infopanel.revalidate();
 				infopanel.repaint();
@@ -147,5 +150,30 @@ public class ControlPanel extends JPanel{
 			this.endField.setText(park.name);
 			this.startChanging = !this.startChanging;
 		}
+	}
+
+	public Dimension getPreferredScrollableViewportSize() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getScrollableBlockIncrement(Rectangle arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public boolean getScrollableTracksViewportHeight() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean getScrollableTracksViewportWidth() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public int getScrollableUnitIncrement(Rectangle arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

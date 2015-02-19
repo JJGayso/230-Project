@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 import javax.swing.BorderFactory;
@@ -28,6 +29,22 @@ public class infoPanel extends JPanel{
 		this.add(label, "cell 0 0, gapleft push");
 		
 		
+	}
+	
+	public void displayRoute(LinkedList<AmusementPark> list){
+		this.removeAll();
+		for (int i=0; i < list.size() -1; i++){
+			for (int j=0; j< list.get(i).getLinks().size(); j++){
+				if (list.get(i).getLinks().get(j).travelToLocation == list.get(i +1)){
+					String labelText = String.format("<html><div WIDTH=%d>%s</div><html>", 200, list.get(i).getLinks().get(j).directions);
+					JLabel direction = new JLabel();
+					direction.setText(labelText);
+					this.add(direction, "cell 0 " + i);
+				}
+			}
+		}
+		this.revalidate();
+		this.repaint();
 	}
 	
 	public void displayInfo(AmusementPark park){

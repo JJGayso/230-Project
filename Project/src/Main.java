@@ -3,6 +3,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -58,9 +59,10 @@ public class Main {
 //			}
 //		});
 //		
+		JScrollPane panel = new JScrollPane(info);
 		myFrame.add(controls, "cell 0 0, growy, w 250");
 		myFrame.add(map , "dock east");
-		myFrame.add(info , "cell 0 1, growy, w 250");
+		myFrame.add(panel , "cell 0 1, growy, w 250");
 		
 		myFrame.pack();
 		myFrame.setVisible(true);
