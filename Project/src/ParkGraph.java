@@ -53,7 +53,7 @@ public class ParkGraph {
 		if (currentLocationLinks.size() == 0) return this.pathsByTime;
 		for (int i = 0; i < currentLocationLinks.size(); i++) {
 			AmusementPark placeToGo = currentLocationLinks.get(i).getLinkLocation();
-			if (!bestPath.routeByDistance.contains(placeToGo)) {
+			if (!bestPath.routeByTime.contains(placeToGo)) {
 				LinkedList<AmusementPark> temp = (LinkedList<AmusementPark>) bestPath.routeByTime.clone();
 				temp.add(placeToGo);
 				Paths newPath = new Paths(starting, ending, currentLocationLinks.get(i).getTime() + timeSpentTraveling, (int) placeToGo.getLocation().distance(ending.getLocation()) + timeSpentTraveling, temp);

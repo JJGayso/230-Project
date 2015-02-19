@@ -183,7 +183,6 @@ public class ControlPanel extends JPanel{
 					while (graph.pathsByDistance.size() != 0 && graph.pathsByDistance.peek() != null) {
 						
 						while (graph.pathsByDistance.peek() != null && !graph.pathsByDistance.peek().routeByDistance.contains(end)){
-							
 							graph.travelByDistance();
 						}
 						if (graph.pathsByDistance.peek() != null) {
@@ -204,6 +203,33 @@ public class ControlPanel extends JPanel{
 						}
 					}
 				}
+				
+				if (byTime.isSelected()) {
+					int counter = 1;
+					while (graph.pathsByTime.size() != 0 && graph.pathsByTime.peek() != null) {
+						
+						while (graph.pathsByTime.peek() != null && !graph.pathsByTime.peek().routeByTime.contains(end)){
+							graph.travelByTime();
+						}
+						if (graph.pathsByTime.peek() != null) {
+							Paths bestPath = graph.pathsByTime.poll();
+							System.out.println(bestPath.timeSpentTraveling + " " + limitation );
+							if (bestPath.timeSpentTraveling <= limitation) {
+									JLabel plan = new JLabel();
+									plan.setText("<HTML><U>plan " + counter + "</U></HTML>");
+									counter++;
+									infopanel.add(plan, "cell 0 " + counter);
+								for (int i = 0; i < bestPath.routeByTime.size(); i++) {
+									System.out.println(bestPath.routeByTime.get(i).name);
+									
+								}
+								System.out.println("");
+								
+							}
+						}
+					}
+				}
+				
 				infopanel.displayingParkInfo = false;
 				infopanel.revalidate();
 				infopanel.repaint();
