@@ -8,16 +8,16 @@ import javax.swing.JScrollPane;
 import net.miginfocom.swing.MigLayout;
 
 /**
- * @author Your team number and names here and in all your code files
+ * @author Team Bits Please (Josh Gayso, Aaron Mercier, Morgan Cook, David Patterson)
  */
 public class Main {
 
 	/**
+	 * Constructs Team Bits Please Window and initializes points
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Add code here.  Create any other needed methods in this class, 
-		//      and any other classes that you need.
 		JFrame myFrame = new JFrame();
 		myFrame.setLayout(new MigLayout());
 		myFrame.setTitle(" Bits Please Navigation System ");
@@ -62,15 +62,7 @@ public class Main {
 		ControlPanel controls = new ControlPanel(info,search);
 		controls.setMap(map);
 		map.setControl(controls);
-		
-		//use this to find the map coords of the amusement parks
-//		info.addMouseListener(new MouseAdapter() {
-//			@Override 
-//			public void mousePressed(MouseEvent e) {
-//				System.out.println(e.getX() + "," + e.getY());
-//			}
-//		});
-//		
+				
 		JScrollPane panel = new JScrollPane(info);
 		myFrame.add(controls, "cell 0 0, growy, w 250");
 		myFrame.add(map , "dock east");
@@ -78,8 +70,6 @@ public class Main {
 		
 		myFrame.pack();
 		myFrame.setVisible(true);
-		//This is where the start and end come in from the gui
-		ParkGraph graph = new ParkGraph(GlenwoodCavernsAdventurePark, DisneyWorld);
 		
 		Links holDisW = new Links (HolidayWorld, DisneyWorld, 767, "Take US 231 South." + "\n" +  "At exit 17, take ramp right for William H Natcher Parkway South toward Bowling Green.  Keep right onto I-24 E. Take ramp left for I-75 S / GA-401 S. At exit 328, take ramp left for Florida's Turnpike South toward Orlando. Arrive at Seven Seas Dr on the left.");
 		Links holCed = new Links(HolidayWorld, CedarPoint, 395, "Take I-64 East toward Louisville. Take ramp left for I-71 North toward Cincinnati. Keep left onto I-75 N. At exit 179, take ramp right for US-6 toward Fremon. Arrive at Cedar Point Dr.");
@@ -88,7 +78,6 @@ public class Main {
 		Links conKno = new Links(ConeyIsland, Knoebels, 195, "Take ramp for Belt Pkwy West toward Verrazona Br. At exit 3, take ramp right for Lower Level toward Staten Island. Take ramp left for I-95 North toward Cars Trucks-Buses. At exit 15W, take ramp right for I-280 toward Kearny / Newark. Take ramp left for I-80 West toward Del Water Gap. At exit 241, take ramp right for US-11 South toward Lime Ridge. Arrive at Knoebels Blvd on the left.");
 		Links knoCed = new Links(Knoebels, CedarPoint, 351, "Turn right onto PA-54 / S Market St. Take ramp right for I-80 West toward Milton. Take ramp right for I-80 West toward Cleveland. Keep right onto OH-2 W. Turn left to stay on US-6 / Cleveland Rd W. Arrive at Cedar Point Dr.");
 		Links knoDisW = new Links(Knoebels, DisneyWorld, 980, "Turn left onto PA-54 / S Market St. Take ramp right for I-81 S. At exit 5B, take ramp right for US-15 South toward Gettysburg. Keep straight onto I-270 S. At exit 57A, take ramp right for I-95 S toward Richmond. At exit 84A, take ramp left for I-295 South toward Richmond Int'l Airport / Rocky Mount NC. Take ramp left for I-95 South toward Rocky Mt NC / Emporia. At exit 352D, take ramp right for I-95 South toward JAX Beaches / Daytona Bch. At exit 260B, take ramp right for I-4 West toward Orlando. Arrive at Seven Seas Dr on the right.");
-		//Links worSix = new Links(WorldsOfFun, SixFlagsOverTexas, 496, "Take I-435 S. At exit 71A, take ramp right for I-49 South / US-71 South toward Grandview. Road name changes to I-49 S / US-71 S. Take ramp right for US-71 South / I-49 South / I-44 West toward Joplin. Turn left onto US-69 S. Keep left to stay on US-69 S. Keep straight onto US-75 S. At exit 445A, take ramp right and follow signs for President George Bush Turnpike South. Arrive.");
 		Links worGlen = new Links(WorldsOfFun, GlenwoodCavernsAdventurePark, 654, "Turn right onto Worlds of Fun Ave. Take ramp left and follow signs for I-435 North. At exit 52B, take ramp right for I-35 South toward Kansas City. At exit 4B, take ramp right for US-24 West / I-70 West / US-40 West toward Topeka. At exit 116, take ramp right toward Aspen / Glenwood Spgs. Arrive at Devereux Rd.");
 		Links sixGlen = new Links(SixFlagsOverTexas, GlenwoodCavernsAdventurePark, 883, "Turn left onto Wet N Wild Way. Take ramp left for I-30 West toward Ft Worth. At exit 21B, take ramp right and follow signs for I-820 North. At exit 60, take ramp right for US-287 North / US-81 North toward Decatur. Keep straight onto US-287 N. Bear right onto TX-335 W Loop. Take ramp left and follow signs for US-87 North / US-287 North. Take ramp right for I-25 North toward Trinidad. Turn right onto CO-69. Turn left onto US-50. Take ramp left for I-70 W. At exit 116, take ramp right toward Aspen / Glenwood Spgs. Arrive at Devereux Rd.");
 		Links sixDisL = new Links(SixFlagsOverTexas, DisneyLand, 1185, "Turn left, and then immediately turn right onto Road To Six Flags E. Take ramp left for I-30 West toward Ft Worth. Keep straight onto I-20 W. Keep straight onto I-10 W. Take ramp left for CA-60 toward Riverside. At exit 34B, take ramp right for CA-91 West toward Beach Cities. At exit 3, take ramp right and follow signs for Ball Rd. Arrive.");
@@ -102,7 +91,6 @@ public class Main {
 		Links knoCon = new Links(Knoebels, ConeyIsland, 195, "Depart Knoebels Blvd toward Hidden Cottage Rd. Turn right onto PA-487. Take ramp left and follow signs for I-80 East. At exit 43, take ramp right for I-287 South toward Somerville / Morristown / New Jersey . At exit 37, take ramp right for RT-24 East toward Springfield. Take ramp right for I-78 East toward Garden State Parkway / Newark. At exit 13, take ramp right for I-278 East toward Verrazano Br / Goethals Br. Arrive at W 25th St.");
 		Links cedKno = new Links(CedarPoint, Knoebels, 351, "Depart Cedar Point Dr toward Cedar Point Rd. Turn left onto US-6 / Cleveland Rd. Keep straight onto OH-2 E. Take ramp right for I-80 East toward Cleveland. At exit 218, take ramp right for I-80 East toward Youngstown. Turn left to stay on PA-54 / Elysburg Rd. Bear right onto Knoebels Blvd. Arrive at Knoebels Blvd on the left.");
 		Links disWKno = new Links(DisneyWorld, Knoebels, 980, "Depart Seven Seas Dr toward TTC Westgate Service Rd. Take ramp right for Epcot Center Dr toward Downtown Disney. Take ramp right for I-4 East toward Orlando. Take ramp left for I-95 North toward Daytona Bch / Jacksonville. Take ramp right for I-95 North toward Savannah / Int'l Airport. At exit 43A, take ramp left for I-95 North toward Washington. At exit 170B, take ramp right for I-495 North toward Tysons Corner. Keep straight onto US-15 N / US-40 W. At exit 51B, take ramp right for I-81 North toward Hazleton / Allentown. At exit 116, take ramp right for PA-901 toward Minersville. Turn left onto PA-54 / PA-901. Arrive at Knoebels Blvd on the left.");
-		//Links sixWor = new Links(SixFlagsOverTexas, WorldsOfFun, 496, "Turn left, and then immediately turn right onto Road To Six Flags E. Take ramp right and follow signs for I-30 East. Keep straight onto TX-161 N Toll / President George Bush Tpke. Take ramp right for TX-121 North / US-75 North toward Sherman. Keep straight onto US-69 N / US-75 N. Keep straight onto US-69. At exit 18B, take ramp right for US-71 North / I-49 North toward Carthage / Kansas City. Take ramp right for I-435 North toward Des Moines. At exit 54, take ramp right for Parvin Rd toward 48th St. Keep straight onto Worlds of Fun Ave. Arrive at Worlds of Fun Ave.");
 		Links glenWor = new Links(GlenwoodCavernsAdventurePark, WorldsOfFun, 654, "Turn right onto US-6 / Linden St. Take ramp left for I-70 E / US-24 E toward Denver. Keep left to stay on I-70 E / US-40 E / KS-4 E. Bear left onto I-29 N / I-35 N / US-71 N. Turn right onto MO-210 E / Armour Rd. Keep straight onto Worlds of Fun Ave. Arrive at Worlds of Fun Ave.");
 		Links glenSix = new Links(GlenwoodCavernsAdventurePark, SixFlagsOverTexas, 883, "Turn right onto US-6 / Linden St. Take ramp left for I-70 E / US-24 E toward Denver. Bear right onto US-24. Turn left onto US-50. 	Turn right to stay on CO-69 / S 6th St. Take ramp right for I-25 South toward Trinidad. Turn left onto US-64 / US-87 / Clayton Rd. Keep straight onto US-87 / S 1st St. Take ramp for US-87 S / US-287 S. Keep straight onto US-287 S. At exit 57A, take ramp left and follow signs for I-820 East. At exit 22B, take ramp right for TX-121 N / TX-183 E toward Dallas / D/FW Airport / Airport. Take ramp right for TX-360 South toward FAA Rd / Arlington / Grand Prairie. Take ramp right for SH 360 / N Watson Rd toward Six Flags Dr / Ave H/Lamar Blvd. Arrive.");
 		Links disLSix = new Links(DisneyLand, SixFlagsOverTexas, 1185, "Depart toward S Disneyland Dr. Take ramp right for I-5 South toward Santa Ana. Take ramp left for CA-55 North toward Riverside / Anaheim. Keep straight onto CA-91 E. Keep left onto CA-60 E. Take ramp left for I-10 E. Keep left to stay on I-10 E. Take ramp left for I-20 East toward Ft Worth / Dallas. Keep left onto I-30 E. At exit 28, take ramp right for E Copeland Rd toward Legends Way / Nolan Ryan Expy / Baird Farm Rd. Turn right onto Six Flags Dr. Arrive.");
@@ -123,8 +111,6 @@ public class Main {
 		DisneyWorld.addLink(disWKno);
 		WorldsOfFun.addLink(worHol);
 		WorldsOfFun.addLink(worGlen);
-		//WorldsOfFun.addLink(worSix);
-		//SixFlagsOverTexas.addLink(sixWor);
 		SixFlagsOverTexas.addLink(sixhol);
 		SixFlagsOverTexas.addLink(sixGlen);
 		SixFlagsOverTexas.addLink(sixDisL);
@@ -136,33 +122,5 @@ public class Main {
 		DisneyLand.addLink(disLKnot);
 		DisneyLand.addLink(disLSix);
 		
-		//Finding best route
-//		while (!graph.pathsByDistance.peek().routeByDistance.contains(DisneyWorld)) {
-//			graph.travelByDistance();
-//		}
-//		Paths bestPath = graph.pathsByDistance.poll();
-//		for (int i = 0; i < bestPath.routeByDistance.size(); i++) {
-//			System.out.println(bestPath.routeByDistance.get(i).name);
-//		}
-		
-//		while (!graph.pathsByTime.peek().routeByTime.contains(DisneyWorld)) {
-//			graph.travelByTime();
-//		}
-//		Paths bestPath = graph.pathsByTime.poll();
-//		for (int i = 0; i < bestPath.routeByTime.size(); i++) {
-//			System.out.println(bestPath.routeByTime.get(i).name);
-//		}
-//		System.out.println(bestPath.timeSpentTraveling);
-//		
-//		graph.insert(HolidayWorld);
-//		graph.insert(KnottsBerryFarm);
-//		graph.insert(Knoebels);
-//		graph.insert(GlenwoodCavernsAdventurePark);
-//		graph.insert(WorldsOfFun);
-//		graph.insert(SixFlagsOverTexas);
-//		graph.insert(ConeyIsland);
-//		graph.insert(CedarPoint);
-//		graph.insert(DisneyLand);
-//		graph.insert(DisneyWorld);
 	}
 }
