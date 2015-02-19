@@ -56,7 +56,16 @@ public class ParkGraph {
 			if (!bestPath.routeByTime.contains(placeToGo)) {
 				LinkedList<AmusementPark> temp = (LinkedList<AmusementPark>) bestPath.routeByTime.clone();
 				temp.add(placeToGo);
-				Paths newPath = new Paths(starting, ending, currentLocationLinks.get(i).getTime() + timeSpentTraveling, (int) placeToGo.getLocation().distance(ending.getLocation()) + timeSpentTraveling, temp);
+				for (int j = 0; j < bestPath.routeByTime.size(); j++) {
+					System.out.println(bestPath.routeByTime.get(j).name);
+				}
+				System.out.println();
+				System.out.println(currentLocation.name);
+				System.out.println(placeToGo.name);
+				System.out.println(timeSpentTraveling);
+				System.out.println(placeToGo.getLocation().distance(ending.getLocation()) + timeSpentTraveling);
+				System.out.println();
+				Paths newPath = new Paths(starting, ending, currentLocationLinks.get(i).getTime() + timeSpentTraveling, (int) placeToGo.getLocation().distance(ending.getLocation())+ currentLocationLinks.get(i).getTime() + timeSpentTraveling, temp);
 				pathsByTime.add(newPath);
 			}
 		}
