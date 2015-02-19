@@ -18,7 +18,7 @@ import javax.swing.Scrollable;
 import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
-public class ControlPanel extends JPanel implements Scrollable{
+public class ControlPanel extends JPanel{
 	private infoPanel infopanel;
 	private JTextField startField;
 	private JTextField endField;
@@ -26,6 +26,7 @@ public class ControlPanel extends JPanel implements Scrollable{
 	public AmusementPark end;
 	private boolean startChanging;
 	public mapPanel map;
+	private JTextField limit;
 
 	public ControlPanel(infoPanel info){
 		this.startChanging = true;
@@ -66,9 +67,9 @@ public class ControlPanel extends JPanel implements Scrollable{
 		this.add(endBox, "cell 0 2");
 		this.endField = endBox;
 		
-		final JRadioButton byDistance = new JRadioButton("shortest distance");
+		final JRadioButton byDistance = new JRadioButton("By distance");
 		byDistance.setSelected(true);
-		final JRadioButton byTime = new JRadioButton("least time");
+		final JRadioButton byTime = new JRadioButton("By time");
 		ButtonGroup group =  new ButtonGroup();
 		group.add(byDistance);
 		group.add(byTime);
@@ -133,6 +134,43 @@ public class ControlPanel extends JPanel implements Scrollable{
 			}
 		};
 		goButton.addActionListener(go);
+		
+		JButton planButton = new JButton("trip Planner");
+		this.add(planButton, "cell 1 5");
+		ActionListener plan = new ActionListener(){
+			public void actionPerformed(ActionEvent f){
+				ParkGraph graph = new ParkGraph(start, end);
+				double limitation = Double.parseDouble(limit.getText());
+				if (byDistance.isSelected()) {
+					while (graph.pathsByDistance.size() != 0 && graph.pathsByDistance.peek() != null) {
+						
+						while (graph.pathsByDistance.peek() != null && !graph.pathsByDistance.peek().routeByDistance.contains(end)){
+							
+							graph.travelByDistance();
+						}
+						if (graph.pathsByDistance.peek() != null) {
+							Paths bestPath = graph.pathsByDistance.poll();
+							System.out.println(bestPath.distanceTraveled + " " + limitation );
+							if (bestPath.distanceTraveled <= limitation) {
+								for (int i = 0; i < bestPath.routeByDistance.size(); i++) {
+									System.out.println(bestPath.routeByDistance.get(i).name);
+								}
+								System.out.println("");
+							}
+						}
+					}
+				}
+				
+			}
+		};
+		planButton.addActionListener(plan);
+		
+		JLabel distanceLabel = new JLabel("Limit Distance/Time: ");
+		this.add(distanceLabel, "cell 0 6, span");
+		JTextField distanceLimit = new JTextField(7);
+		this.add(distanceLimit, "cell 0 6, span");
+		this.limit = distanceLimit;
+		
 	}
 	
 	public void setMap(mapPanel inmap){
@@ -152,28 +190,4 @@ public class ControlPanel extends JPanel implements Scrollable{
 		}
 	}
 
-	public Dimension getPreferredScrollableViewportSize() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public int getScrollableBlockIncrement(Rectangle arg0, int arg1, int arg2) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public boolean getScrollableTracksViewportHeight() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean getScrollableTracksViewportWidth() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public int getScrollableUnitIncrement(Rectangle arg0, int arg1, int arg2) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

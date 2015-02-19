@@ -22,6 +22,7 @@ public class Main {
 		myFrame.setLayout(new MigLayout());
 		myFrame.setTitle(" Bits Please Navigation System ");
 		ArrayList<AmusementPark> parks = new ArrayList<AmusementPark>();
+		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		AmusementPark HolidayWorld = new AmusementPark("Holiday World", 579, 285, 10);
 		parks.add(HolidayWorld);
@@ -133,14 +134,14 @@ public class Main {
 //			System.out.println(bestPath.routeByDistance.get(i).name);
 //		}
 		
-		while (!graph.pathsByTime.peek().routeByTime.contains(DisneyWorld)) {
-			graph.travelByTime();
-		}
-		Paths bestPath = graph.pathsByTime.poll();
-		for (int i = 0; i < bestPath.routeByTime.size(); i++) {
-			System.out.println(bestPath.routeByTime.get(i).name);
-		}
-		System.out.println(bestPath.timeSpentTraveling);
+//		while (!graph.pathsByTime.peek().routeByTime.contains(DisneyWorld)) {
+//			graph.travelByTime();
+//		}
+//		Paths bestPath = graph.pathsByTime.poll();
+//		for (int i = 0; i < bestPath.routeByTime.size(); i++) {
+//			System.out.println(bestPath.routeByTime.get(i).name);
+//		}
+//		System.out.println(bestPath.timeSpentTraveling);
 		
 		graph.insert(HolidayWorld);
 		graph.insert(KnottsBerryFarm);
@@ -153,5 +154,4 @@ public class Main {
 		graph.insert(DisneyLand);
 		graph.insert(DisneyWorld);
 	}
-
 }
