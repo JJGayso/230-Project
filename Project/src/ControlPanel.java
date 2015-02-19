@@ -190,15 +190,18 @@ public class ControlPanel extends JPanel{
 							System.out.println(bestPath.distanceTraveled + " " + limitation );
 							if (bestPath.distanceTraveled <= limitation) {
 									JLabel plan = new JLabel();
-									plan.setText("<HTML><U>plan " + counter + "</U></HTML>");
+									String message = "<HTML><U>plan " + counter + "</U><br>";
+									//plan.setText("<HTML><U>plan " + counter + "</U></HTML>");
 									counter++;
-									infopanel.add(plan, "cell 0 " + counter);
-								for (int i = 0; i < bestPath.routeByDistance.size(); i++) {
+								for (int i = 1; i < bestPath.routeByDistance.size(); i++) {
 									System.out.println(bestPath.routeByDistance.get(i).name);
+									message = message + bestPath.routeByDistance.get(i - 1).name + " to " + bestPath.routeByDistance.get(i).name + "<br>";
 									
 								}
 								System.out.println("");
-								
+								message = message + "</HTML>";
+								plan.setText(message);
+								infopanel.add(plan, "cell 0 " + counter);
 							}
 						}
 					}
