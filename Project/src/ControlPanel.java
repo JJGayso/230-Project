@@ -81,6 +81,19 @@ public class ControlPanel extends JPanel{
 		this.add(goButton, "cell 0 5");
 		ActionListener go = new ActionListener(){
 			public void actionPerformed(ActionEvent f){
+				if (start == null || end == null){
+					String error = "Please select ";
+					if (start == null && end == null) error = error + "a start and end location";
+					else if (start == null) error = error + "a start location";
+					else if (end == null) error = error + "an end location";
+					JLabel error1 = new JLabel(error);
+					infopanel.removeAll();
+					infopanel.displayingParkInfo = false;
+					infopanel.add(error1, "cell 0 0");
+					infopanel.revalidate();
+					infopanel.repaint();
+					return;
+				}
 				ParkGraph graph = new ParkGraph(start, end);
 				if (byDistance.isSelected()) {
 					while (!graph.pathsByDistance.peek().routeByDistance.contains(end)){
@@ -139,9 +152,34 @@ public class ControlPanel extends JPanel{
 		this.add(planButton, "cell 1 5");
 		ActionListener plan = new ActionListener(){
 			public void actionPerformed(ActionEvent f){
+				if (start == null || end == null){
+					String error = "Please select ";
+					if (start == null && end == null) error = error + "a start and end location";
+					else if (start == null) error = error + "a start location";
+					else if (end == null) error = error + "an end location";
+					JLabel error1 = new JLabel(error);
+					infopanel.removeAll();
+					infopanel.displayingParkInfo = false;
+					infopanel.add(error1, "cell 0 0");
+					infopanel.revalidate();
+					infopanel.repaint();
+					return;
+				}
+				System.out.println(limit.getText());
+				if (limit.getText().isEmpty()){
+					JLabel error2 = new JLabel("please select a maximum distance/time");
+					infopanel.removeAll();
+					infopanel.displayingParkInfo = false;
+					infopanel.add(error2, "cell 0 0");
+					infopanel.revalidate();
+					infopanel.repaint();
+					return;
+				}
+				infopanel.removeAll();
 				ParkGraph graph = new ParkGraph(start, end);
 				double limitation = Double.parseDouble(limit.getText());
 				if (byDistance.isSelected()) {
+					int counter = 1;
 					while (graph.pathsByDistance.size() != 0 && graph.pathsByDistance.peek() != null) {
 						
 						while (graph.pathsByDistance.peek() != null && !graph.pathsByDistance.peek().routeByDistance.contains(end)){
@@ -152,14 +190,23 @@ public class ControlPanel extends JPanel{
 							Paths bestPath = graph.pathsByDistance.poll();
 							System.out.println(bestPath.distanceTraveled + " " + limitation );
 							if (bestPath.distanceTraveled <= limitation) {
+									JLabel plan = new JLabel();
+									plan.setText("<HTML><U>plan " + counter + "</U></HTML>");
+									counter++;
+									infopanel.add(plan, "cell 0 " + counter);
 								for (int i = 0; i < bestPath.routeByDistance.size(); i++) {
 									System.out.println(bestPath.routeByDistance.get(i).name);
+									
 								}
 								System.out.println("");
+								
 							}
 						}
 					}
 				}
+				infopanel.displayingParkInfo = false;
+				infopanel.revalidate();
+				infopanel.repaint();
 				
 			}
 		};

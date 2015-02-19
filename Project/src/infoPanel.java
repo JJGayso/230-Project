@@ -36,10 +36,11 @@ public class infoPanel extends JPanel{
 		for (int i=0; i < list.size() -1; i++){
 			for (int j=0; j< list.get(i).getLinks().size(); j++){
 				if (list.get(i).getLinks().get(j).travelToLocation == list.get(i +1)){
-					String labelText = String.format("<html><div WIDTH=%d>%s</div><html>", 200, list.get(i).getLinks().get(j).directions);
+					String labelText = String.format("<html><U>go from " + list.get(i).name + " to " + list.get(i).getLinks().get(j).travelToLocation.name + 
+							"</U><div WIDTH=%d>%s</div><html>", 200, list.get(i).getLinks().get(j).directions);
 					JLabel direction = new JLabel();
 					direction.setText(labelText);
-					this.add(direction, "cell 0 " + i);
+					this.add(direction, "cell 0 " + i + ", gapbottom 20");
 				}
 			}
 		}
