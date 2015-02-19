@@ -110,16 +110,16 @@ public class Testing {
 			System.out.println(bestPath.routeByDistance.get(i).name);
 		}
 		//Check if priority queue is updated with proper stuff
-		graph.insert(HolidayWorld);
-		graph.insert(KnottsBerryFarm);
-		graph.insert(Knoebels);
-		graph.insert(GlenwoodCavernsAdventurePark);
-		graph.insert(WorldsOfFun);
-		graph.insert(SixFlagsOverTexas);
-		graph.insert(ConeyIsland);
-		graph.insert(CedarPoint);
-		graph.insert(DisneyLand);
-		graph.insert(DisneyWorld);
+//		graph.insert(HolidayWorld);
+//		graph.insert(KnottsBerryFarm);
+//		graph.insert(Knoebels);
+//		graph.insert(GlenwoodCavernsAdventurePark);
+//		graph.insert(WorldsOfFun);
+//		graph.insert(SixFlagsOverTexas);
+//		graph.insert(ConeyIsland);
+//		graph.insert(CedarPoint);
+//		graph.insert(DisneyLand);
+//		graph.insert(DisneyWorld);
 	}
 
 }

@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -22,29 +23,38 @@ public class ControlPanel extends JPanel{
 	private infoPanel infopanel;
 	private JTextField startField;
 	private JTextField endField;
+	private JTextField searchbox;
 	public AmusementPark start;
 	public AmusementPark end;
 	private boolean startChanging;
 	public mapPanel map;
+	public SearchMap smap;
 	private JTextField limit;
 
-	public ControlPanel(infoPanel info){
+	public ControlPanel(infoPanel info, SearchMap sea){
 		this.startChanging = true;
 		//this.setPreferredSize(new Dimension(250, 300));
 		this.setLayout(new MigLayout());
+		this.smap = sea;
 		infopanel = info;
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		JTextField searchBox = new JTextField("search", 10);
 		this.add(searchBox, "cell 0 0, gapy 30::30");
+		searchbox = searchBox;
 		
 		JButton searchButton = new JButton("search");
 		this.add(searchButton, "cell 1 0, span");
 		ActionListener search = new ActionListener(){
 			public void actionPerformed(ActionEvent f){
 				infopanel.removeAll();
-				JLabel searching = new JLabel("searching");
-				infopanel.add(searching, "cell 0 1");
+				ArrayList<AmusementPark> parklist = smap.getList(Integer.parseInt(searchbox.getText()));
+				for(int i=0; i < parklist.size(); i++){
+					JLabel label = new JLabel();
+					label.setText(parklist.get(i).getName() + " " + parklist.get(i).levelOfFun);
+					infopanel.add(label, "cell 0 " + i);
+				
+				}
 				infopanel.displayingParkInfo = false;
 				infopanel.revalidate();
 				infopanel.repaint();

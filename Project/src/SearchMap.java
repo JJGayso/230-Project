@@ -22,6 +22,10 @@ public class SearchMap {
 	}
 
 	public ArrayList<AmusementPark> getList(Integer level) {
-		return map.get(level);
+		ArrayList<AmusementPark> temp = new ArrayList<AmusementPark>();
+		for(int i = level; i >= 1; i--){
+			temp.addAll(map.get(i));
+		}
+		return temp;
 	}
 }

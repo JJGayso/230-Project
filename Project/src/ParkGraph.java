@@ -71,13 +71,4 @@ public class ParkGraph {
 		}
 		return this.pathsByTime;
 	}
-	
-	public AmusementPark search(AmusementPark park) {
-		//Search for a park in the graph
-		return park;
-	}
-
-	public void insert(AmusementPark park) {
-		parks.add(park);
-	}
 }
