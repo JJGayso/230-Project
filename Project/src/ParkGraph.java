@@ -2,18 +2,31 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
+/**
+ * 
+ * @author Team Bits Please (Josh Gayso, Aaron Mercier, Morgan Cook, David Patterson)
+ *
+ * Park Graph is a map of the locations. Clicking the Go button in the GUI, a new Park Graph is created with the starting and ending locations.
+ * Distance and time spent traveling are tracked. The cost for traveling depending on distance or time are calculated during run time. Two priority
+ * queues are made that keep track of the best path according to distance and time. 
+ */
 public class ParkGraph {
 	AmusementPark starting;
 	AmusementPark ending;
 	double distanceTraveled;
-	double distanceCost; //a.k.a. straight line distance from the point to final destination
+	double distanceCost;
 	int timeSpentTraveling;
 	int timeCost;
 	PriorityQueue<Paths> pathsByDistance = new PriorityQueue<Paths>();
 	PriorityQueue<Paths> pathsByTime = new PriorityQueue<Paths>();
 	ArrayList<Links> currentLocationLinks = new ArrayList<Links>(); //Neighbors of current
-	ArrayList<AmusementPark> parks = new ArrayList<AmusementPark>();
 	
+	/**
+	 * A park graph is created with the starting and ending location, the initial distance and time spent traveling are initialized to 0
+	 * and the cost is calculated based on the point locations.
+	 * @param start
+	 * @param stop
+	 */
 	public ParkGraph(AmusementPark start, AmusementPark stop) {
 		this.starting = start;
 		this.ending = stop;
@@ -25,26 +38,33 @@ public class ParkGraph {
 		this.pathsByTime.add(new Paths(starting, ending, timeSpentTraveling, timeCost));
 	}
 	
-	//I have a better explanation on paper so just ask, but basically this method will be called after go is pressed, 
-	//and will continue to be called until reaching final (which means that the ending location has been reached and has been added to the priority queue with the total distance traveled.
+	/**
+	 * Travel by distance populates the paths by distance priority queue, only populates based the first priority travel route
+	 * @return paths by distance priority queue
+	 */
 	public PriorityQueue<Paths> travelByDistance() {
 		Paths bestPath = pathsByDistance.poll();
 		distanceTraveled = bestPath.distanceTraveled;
 		AmusementPark currentLocation = bestPath.routeByDistance.getLast();
-		currentLocationLinks = currentLocation.getLinks(); //This needs to return an array list of Amusement Parks that the current location is connected to 
+		currentLocationLinks = currentLocation.getLinks();
 		if (currentLocationLinks.size() == 0) return this.pathsByDistance;
 		for (int i = 0; i < currentLocationLinks.size(); i++) {
 			AmusementPark placeToGo = currentLocationLinks.get(i).getLinkLocation();
 			if (!bestPath.routeByDistance.contains(placeToGo)) {
+				@SuppressWarnings("unchecked")
 				LinkedList<AmusementPark> temp = (LinkedList<AmusementPark>) bestPath.routeByDistance.clone();
 				temp.add(placeToGo);
 				Paths newPath = new Paths(starting, ending, currentLocationLinks.get(i).getDistance() + distanceTraveled, (double) placeToGo.getLocation().distance(ending.getLocation()) + distanceTraveled, temp);
-				pathsByDistance.add(newPath); //Before calling travel check to see if final location is in the linked list or just check the distance cost which should be zero
+				pathsByDistance.add(newPath);
 			}
 		}
-		return this.pathsByDistance; //Returns the first path in the priority queue
+		return this.pathsByDistance; 
 	}
 	
+	/**
+	 * Travel by time populates the paths by time priority queue, only populates based on the first priority route
+	 * @return paths by time priority queue
+	 */
 	public PriorityQueue<Paths> travelByTime() {
 		Paths bestPath = pathsByTime.poll();
 		timeSpentTraveling = bestPath.timeSpentTraveling;
@@ -54,17 +74,9 @@ public class ParkGraph {
 		for (int i = 0; i < currentLocationLinks.size(); i++) {
 			AmusementPark placeToGo = currentLocationLinks.get(i).getLinkLocation();
 			if (!bestPath.routeByTime.contains(placeToGo)) {
+				@SuppressWarnings("unchecked")
 				LinkedList<AmusementPark> temp = (LinkedList<AmusementPark>) bestPath.routeByTime.clone();
 				temp.add(placeToGo);
-				for (int j = 0; j < bestPath.routeByTime.size(); j++) {
-					System.out.println(bestPath.routeByTime.get(j).name);
-				}
-				System.out.println();
-				System.out.println(currentLocation.name);
-				System.out.println(placeToGo.name);
-				System.out.println(timeSpentTraveling);
-				System.out.println(placeToGo.getLocation().distance(ending.getLocation()) + timeSpentTraveling);
-				System.out.println();
 				Paths newPath = new Paths(starting, ending, currentLocationLinks.get(i).getTime() + timeSpentTraveling, (int) placeToGo.getLocation().distance(ending.getLocation())+ currentLocationLinks.get(i).getTime() + timeSpentTraveling, temp);
 				pathsByTime.add(newPath);
 			}
