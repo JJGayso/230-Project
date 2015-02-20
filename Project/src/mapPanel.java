@@ -14,17 +14,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import net.miginfocom.swing.MigLayout;
-
+/**
+ * A JPanel object that displays the map with points and paths
+ * Moving the cursor over a park will highlight it blue
+ * @author Aaron
+ */
 @SuppressWarnings("serial")
 public class mapPanel extends JPanel{
 	private BufferedImage usa;
 	private ArrayList<AmusementPark> parkList;
 	private	infoPanel infopanel;
 	private ControlPanel controlpanel;
+	@SuppressWarnings("unused")
 	private AmusementPark clickedPark;
 	public ArrayList<Line2D.Double> lines;
 	public boolean drawLines;
@@ -50,14 +53,9 @@ public class mapPanel extends JPanel{
 	                for (AmusementPark park : parkList) {
 	                	Point2D point = me.getPoint();
 	                    if (isContained(point, park.location)) {
-	                        //System.out.println("Clicked "+park.name);
-	                        //JLabel parkLabel = new JLabel("<HTML><U><B>" + park.name + "</B></U></HTML>");
 	                        clickedPark = park;
 	                        revalidate();
 	                        repaint();
-//	                        infopanel.removeAll();
-//	                        parkLabel.setFont(parkLabel.getFont().deriveFont(22f));
-//	                        infopanel.add(parkLabel, "pushx, align center");
 	                        infopanel.displayInfo(park);
 	        				
 	        				if (controlpanel != null){
@@ -87,10 +85,20 @@ public class mapPanel extends JPanel{
 		this.addMouseMotionListener(adapter);
 	}
 	
+	/**
+	 * sets the control panel as a global variable for access in the mouselisteners
+	 * @param panel
+	 */
 	public void setControl(ControlPanel panel){
 		this.controlpanel = panel;
 	}
 	
+	/**
+	 * checks if the point contains a park and returns true if it is
+	 * @param click
+	 * @param park
+	 * @return
+	 */
 	public boolean isContained(Point2D click, Point2D park){
 		if (click.getX() > park.getX() && click.getX() < park.getX() + 15){
 			if (click.getY() > park.getY() && click.getY() < park.getY() + 15){
@@ -101,11 +109,21 @@ public class mapPanel extends JPanel{
 		
 	}
 	
+	/**
+	 * creates a line2D object based on the start and end location
+	 * used in paintComponent to simplify code
+	 * @param startPark
+	 * @param endPark
+	 */
 	public void addLine(AmusementPark startPark, AmusementPark endPark){
 		Line2D.Double line = new Line2D.Double(startPark.location.getX() + 7.5, startPark.location.getY() + 7.5, endPark.location.getX() + 7.5, endPark.location.getY() + 7.5);
 		this.lines.add(line);
 	}
 	
+	/**
+	 * draws the map on this component as well as park circles
+	 * if a best path is found, it will display that path with the appropriate lines
+	 */
 	@Override
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);

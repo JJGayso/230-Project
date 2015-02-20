@@ -1,7 +1,5 @@
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -12,12 +10,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.Scrollable;
 
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * A Jpanel containing the buttons, text fields, and radio buttons for the gui
+ * Also includes the action listeners.
+ * @author Aaron
+ */
 @SuppressWarnings("serial")
 public class ControlPanel extends JPanel{
 	private infoPanel infopanel;
@@ -33,13 +34,12 @@ public class ControlPanel extends JPanel{
 
 	public ControlPanel(infoPanel info, SearchMap sea){
 		this.startChanging = true;
-		//this.setPreferredSize(new Dimension(250, 300));
 		this.setLayout(new MigLayout());
 		this.smap = sea;
 		infopanel = info;
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
-		JTextField searchBox = new JTextField("search", 10);
+		JTextField searchBox = new JTextField(10);
 		this.add(searchBox, "cell 0 0, gapy 30::30");
 		searchbox = searchBox;
 		
@@ -117,7 +117,6 @@ public class ControlPanel extends JPanel{
 					
 					for (int i =1; i < bestPath.routeByDistance.size(); i++){
 						if (map != null){
-							System.out.println(bestPath.routeByDistance.get(i-1).name + " " + bestPath.routeByDistance.get(i).name);
 							map.addLine(bestPath.routeByDistance.get(i-1), bestPath.routeByDistance.get(i));
 						}
 					}
@@ -135,7 +134,6 @@ public class ControlPanel extends JPanel{
 					
 					for (int i =1; i < bestPath.routeByTime.size(); i++){
 						if (map != null){
-							System.out.println(bestPath.routeByTime.get(i-1).name + " " + bestPath.routeByTime.get(i).name);
 							map.addLine(bestPath.routeByTime.get(i-1), bestPath.routeByTime.get(i));
 						}
 					}
@@ -144,12 +142,6 @@ public class ControlPanel extends JPanel{
 					map.revalidate();
 					map.repaint();
 				}
-//				infopanel.removeAll();
-//				JLabel goLabel = new JLabel("GO by time");
-//				if(byDistance.isSelected()) {
-//					goLabel.setText("GO by distance");
-//				}
-//				infopanel.add(goLabel, "cell 0 1");
 				infopanel.displayingParkInfo = false;
 				infopanel.revalidate();
 				infopanel.repaint();
@@ -175,7 +167,6 @@ public class ControlPanel extends JPanel{
 					infopanel.repaint();
 					return;
 				}
-				System.out.println(limit.getText());
 				if (limit.getText().isEmpty()){
 					JLabel error2 = new JLabel("please select a maximum distance/time");
 					infopanel.removeAll();
@@ -197,18 +188,14 @@ public class ControlPanel extends JPanel{
 						}
 						if (graph.pathsByDistance.peek() != null) {
 							Paths bestPath = graph.pathsByDistance.poll();
-							System.out.println(bestPath.distanceTraveled + " " + limitation );
 							if (bestPath.distanceTraveled <= limitation) {
 									JLabel plan = new JLabel();
 									String message = "<HTML><U>plan " + counter + "</U><br>";
-									//plan.setText("<HTML><U>plan " + counter + "</U></HTML>");
 									counter++;
 								for (int i = 1; i < bestPath.routeByDistance.size(); i++) {
-									System.out.println(bestPath.routeByDistance.get(i).name);
 									message = message + bestPath.routeByDistance.get(i - 1).name + " to " + bestPath.routeByDistance.get(i).name + "<br>";
 									
 								}
-								System.out.println("");
 								message = message + "</HTML>";
 								plan.setText(message);
 								infopanel.add(plan, "cell 0 " + counter);
@@ -226,17 +213,16 @@ public class ControlPanel extends JPanel{
 						}
 						if (graph.pathsByTime.peek() != null) {
 							Paths bestPath = graph.pathsByTime.poll();
-							System.out.println(bestPath.timeSpentTraveling + " " + limitation );
 							if (bestPath.timeSpentTraveling <= limitation) {
-									JLabel plan = new JLabel();
-									plan.setText("<HTML><U>plan " + counter + "</U></HTML>");
-									counter++;
-									infopanel.add(plan, "cell 0 " + counter);
-								for (int i = 0; i < bestPath.routeByTime.size(); i++) {
-									System.out.println(bestPath.routeByTime.get(i).name);
-									
+								JLabel plan = new JLabel();
+								String message = "<HTML><U>plan " + counter + "</U><br>";
+								counter++;
+								for (int i = 1; i < bestPath.routeByTime.size(); i++) {
+									message = message + bestPath.routeByTime.get(i - 1).name + " to " + bestPath.routeByTime.get(i).name + "<br>";
 								}
-								System.out.println("");
+								message = message + "</HTML>";
+								plan.setText(message);
+								infopanel.add(plan, "cell 0 " + counter);
 								
 							}
 						}
@@ -259,10 +245,18 @@ public class ControlPanel extends JPanel{
 		
 	}
 	
+	/**
+	 * gives this control panel the map panel for reference in the action listeners
+	 * @param inmap
+	 */
 	public void setMap(mapPanel inmap){
 		this.map = inmap;
 	}
 	
+	/**
+	 * sets the start and end boxes according to which one is being changed
+	 * @param park park to change
+	 */
 	public void setBox(AmusementPark park){
 		if(this.startChanging){
 			this.start = park;

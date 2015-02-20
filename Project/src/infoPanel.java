@@ -1,8 +1,6 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -14,13 +12,19 @@ import java.io.InputStream;
 
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * A dynamic Jpanel that displays any info needed to be shown
+ * if searching, displays search results
+ * if planning a trip, displays possible paths
+ * if choosing best path, displays directions along best path
+ * @author Aaron
+ */
 @SuppressWarnings("serial")
 public class infoPanel extends JPanel{
 	public boolean displayingParkInfo;
 	private AmusementPark currentPark;
 
 	public infoPanel(){
-		//this.setPreferredSize(new Dimension(250, 300));
 		this.displayingParkInfo = false;
 		this.setLayout(new MigLayout());
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -31,6 +35,10 @@ public class infoPanel extends JPanel{
 		
 	}
 	
+	/**
+	 * displays the Routes from the list given
+	 * @param list
+	 */
 	public void displayRoute(LinkedList<AmusementPark> list){
 		this.removeAll();
 		for (int i=0; i < list.size() -1; i++){
@@ -48,6 +56,11 @@ public class infoPanel extends JPanel{
 		this.repaint();
 	}
 	
+	/**
+	 * displays the info of the park into this panel 
+	 * 
+	 * @param park park to display info of
+	 */
 	public void displayInfo(AmusementPark park){
 		this.currentPark = park;
         this.removeAll();
@@ -72,6 +85,9 @@ public class infoPanel extends JPanel{
 		this.repaint();
 	}
 	
+	/**
+	 * paints the park info if it needs to
+	 */
 	@Override
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
