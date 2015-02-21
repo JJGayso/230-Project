@@ -8,6 +8,10 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
+/**
+ * AmusementPark class that stores all the 
+ * information about an amusement park.
+ */
 public class AmusementPark {
 	public int levelOfFun;
 	public Point2D.Double location = new Point2D.Double();
@@ -28,18 +32,35 @@ public class AmusementPark {
 		}
 	}
 	
+	/**
+	 * Returns an ArrayList of all the other parks currently connected to
+	 * @return ArrayList<Links>
+	 */
 	public ArrayList<Links> getLinks(){
 		return this.parkConnections;
 	}
 	
+	/**
+	 * Gets AmusementParks level of fun
+	 * @return int
+	 */
 	public int getLevelOfFun(){
 		return this.levelOfFun;
 	}
 	
+	
+	/**
+	 * Returns the location of AmusementPark
+	 * @return Point2D.Double
+	 */
 	public Point2D.Double getLocation(){
 		return this.location;
 	}	
 	
+	/**
+	 * Returns name of AmusementPark
+	 * @return String
+	 */	
 	public String getName(){
 		return this.name;
 	}
@@ -48,6 +69,11 @@ public class AmusementPark {
 		g1.drawImage(image, 30, 50, image.getWidth() + 30, image.getHeight() + 20, panel);
 	}
 	
+	/**
+	 * Takes in a Link and adds it to an arrayList of AmusementParks stored  
+	 * by the park.
+	 * @param Links
+	 */
 	public void addLink(Links q){
 		this.parkConnections.add(q);
 	}
