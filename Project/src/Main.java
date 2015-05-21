@@ -45,6 +45,8 @@ public class Main {
 		AmusementPark KnottsBerryFarm = new AmusementPark("Knotts Berry Farm", 95, 315, 5);
 		parks.add(KnottsBerryFarm);
 		
+		//Add all created Parks to the SearchMap for later searching.
+		
 		SearchMap search = new SearchMap();
 		search.insertPark(HolidayWorld);
 		search.insertPark(DisneyWorld);
@@ -71,6 +73,8 @@ public class Main {
 		myFrame.pack();
 		myFrame.setVisible(true);
 		
+		//Creates all the Links between AmusementParks. Two links are required for each connection between AmusementParks, a Link going in each direction
+		
 		Links holDisW = new Links (HolidayWorld, DisneyWorld, 767, "Take US 231 South." + "\n" +  "At exit 17, take ramp right for William H Natcher Parkway South toward Bowling Green.  Keep right onto I-24 E. Take ramp left for I-75 S / GA-401 S. At exit 328, take ramp left for Florida's Turnpike South toward Orlando. Arrive at Seven Seas Dr on the left.");
 		Links holCed = new Links(HolidayWorld, CedarPoint, 395, "Take I-64 East toward Louisville. Take ramp left for I-71 North toward Cincinnati. Keep left onto I-75 N. At exit 179, take ramp right for US-6 toward Fremon. Arrive at Cedar Point Dr.");
 		Links holWor = new Links(HolidayWorld, WorldsOfFun, 393, "Take US-231 North. Take ramp left for I-64 W. Take ramp right for I-70 W. At exit 54, take ramp right for Parvin Rd toward 48th St. Arrive at Worlds of Fun Ave.");
@@ -96,6 +100,8 @@ public class Main {
 		Links disLSix = new Links(DisneyLand, SixFlagsOverTexas, 1185, "Depart toward S Disneyland Dr. Take ramp right for I-5 South toward Santa Ana. Take ramp left for CA-55 North toward Riverside / Anaheim. Keep straight onto CA-91 E. Keep left onto CA-60 E. Take ramp left for I-10 E. Keep left to stay on I-10 E. Take ramp left for I-20 East toward Ft Worth / Dallas. Keep left onto I-30 E. At exit 28, take ramp right for E Copeland Rd toward Legends Way / Nolan Ryan Expy / Baird Farm Rd. Turn right onto Six Flags Dr. Arrive.");
 		Links knotGlen = new Links(KnottsBerryFarm, GlenwoodCavernsAdventurePark, 728, "Depart CA-39 S / Beach Blvd toward Grand Ave. Take ramp right for CA-57 North toward Pomona. Keep left onto CA-60 E. Take ramp right for I-15 North toward Barstow. At exit 132, take ramp right for I-70 East toward Denver / Richfield. At exit 114, take ramp right toward West Glenwood. Turn right onto Devereux Rd. Arrive at Devereux Rd.");
 		Links disLKnot = new Links(DisneyLand, KnottsBerryFarm, 10, "Depart toward S Disneyland Dr. Take ramp right for I-5 North toward Los Angeles. At exit 113C, take ramp right and follow signs for CA-91 West. At exit 23B, take ramp right for CA-39 toward Buena Park. Arrive at CA-39 S / Beach Blvd.");
+		
+		//Adds the Links to the AmusementParks
 		
 		HolidayWorld.addLink(holDisW);
 		HolidayWorld.addLink(holCed);
